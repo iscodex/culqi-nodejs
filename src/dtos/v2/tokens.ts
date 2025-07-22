@@ -83,10 +83,11 @@ export interface TokenResponse {
   active: boolean;
   iin: IINInfo;
   client: ClientInfo;
-  metadata: Record<string, unknown>;
+  metadata?: Record<string, unknown>;
 }
 
 /* ------------------------------ List helpers ------------------------------ */
+
 export interface PagingCursors {
   before?: string;
   after?: string;

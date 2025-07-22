@@ -11,7 +11,7 @@ import type {
 
 /**
  * Token endpoints for API v2.
- * `createToken` must use the public key; retrieval uses the secret key.
+ * `create` and `createYape` must use the public key; retrieval uses the secret key.
  */
 export class Tokens extends BaseResource {
   constructor(http: HttpClient, apiVersion: string) {
@@ -33,7 +33,7 @@ export class Tokens extends BaseResource {
     return this.patch<TokenResponse, TokenUpdateDto>(`/${id}`, payload);
   }
 
-  /** Retrieve a single token by its id (secret‑key auth) */
+  /** Retrieve a single token by its id */
   find(id: string) {
     return this.get<TokenResponse>(`/${id}`);
   }
