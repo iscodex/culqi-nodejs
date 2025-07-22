@@ -1,10 +1,6 @@
 import { describe, expect, it, jest, beforeEach } from '@jest/globals';
 import { Charges } from '../../../src/resources/v2/charges';
 
-/**
- * Unit‑tests for Charge resource wrapper (API v2).
- * We inject a mocked HttpClient and assert the correct paths, flags and payloads.
- */
 describe('Charges resource (v2)', () => {
   let http: any;
   let charges: Charges;
@@ -19,51 +15,58 @@ describe('Charges resource (v2)', () => {
     charges = new Charges(http, '2');
   });
 
-  it('create() posts to /v2/charges', async () => {
-    const payload = {
-      amount: '10000',
+  it('create() posts a charge', async () => {
+    const body = {
+      amount: 10000,
       currency_code: 'PEN',
       email: 'richard@piedpiper.com',
       source_id: 'tkn_123',
-      capture: true,
     } as any;
 
-    http.post.mockResolvedValue({ id: 'tkn_123' });
+    http.post.mockResolvedValue({ id: 'chr_123' });
 
-    const res = await charges.create(payload);
+    const res = await charges.create(body);
 
-    expect(http.post).toHaveBeenCalledWith('/v2/charges', payload, false);
-    expect(res).toEqual({ id: 'tkn_123' });
+    expect(http.post).toHaveBeenCalledWith('/v2/charges', {
+      data: body,
+      pub: false,
+    });
+    expect(res).toEqual({ id: 'chr_123' });
   });
 
   it('findBy() sends query params correctly', async () => {
-    const query = { limit: '10', currency_code: 'PE' } as any;
+    const params = { limit: '10', currency_code: 'PEN' } as any;
 
-    await charges.findBy(query);
+    await charges.findBy(params);
 
-    expect(http.get).toHaveBeenCalledWith('/v2/charges', query, false);
+    expect(http.get).toHaveBeenCalledWith('/v2/charges', {
+      params,
+      pub: false,
+    });
   });
 
-  it('find() fetches a single charge via GET', async () => {
-    http.get.mockResolvedValue({ id: 'tkn_123' });
+  it('find() fetches a single charge by id', async () => {
+    http.get.mockResolvedValue({ id: 'chr_123' });
 
-    await charges.find('tkn_123');
+    await charges.find('chr_123');
 
-    expect(http.get).toHaveBeenCalledWith('/v2/charges/tkn_123', undefined, false);
+    expect(http.get).toHaveBeenCalledWith('/v2/charges/chr_123', { pub: false });
   });
 
-  it('update() patches metadata via secret‑key auth', async () => {
+  it('update() patches charge metadata', async () => {
     const meta = { metadata: { foo: 'bar' } } as any;
-    await charges.update('tkn_123', meta);
 
-    expect(http.patch).toHaveBeenCalledWith('/v2/charges/tkn_123', meta, false);
+    await charges.update('chr_123', meta);
+
+    expect(http.patch).toHaveBeenCalledWith('/v2/charges/chr_123', {
+      data: meta,
+      pub: false,
+    });
   });
 
-  it('capture()', async () => {
-    http.get.mockResolvedValue({ id: 'tkn_123' });
+  it('capture() posts to capture endpoint', async () => {
+    await charges.capture('chr_123');
 
-    await charges.capture('tkn_123');
-
-    expect(http.post).toHaveBeenCalledWith('/v2/charges/tkn_123/capture', null, false);
+    expect(http.post).toHaveBeenCalledWith('/v2/charges/chr_123/capture', { pub: false });
   });
 });
