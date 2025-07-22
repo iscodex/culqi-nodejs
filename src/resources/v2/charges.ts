@@ -4,26 +4,25 @@ import type {
   ChargeCreateDto,
   ChargeListQuery,
   ChargeListResponse,
+  ChargePendingResponse,
   ChargeResponse,
   ChargeUpdateDto,
 } from '../../dtos/v2/charges';
 
-/**
- * Charge endpoints for API v2.
- */
+/** Charge endpoints for API v2 */
 export class Charges extends BaseResource {
   constructor(http: HttpClient, apiVersion: string) {
     super(http, `/v${apiVersion}/charges`);
   }
 
   /** Create a charge */
-  create(payload: ChargeCreateDto) {
-    return this.post<ChargeResponse, ChargeCreateDto>(payload);
+  create(data: ChargeCreateDto) {
+    return this.post<ChargePendingResponse | ChargeResponse>(undefined, { data });
   }
 
-  // /** List charges with optional filters */
-  findBy(query?: ChargeListQuery) {
-    return this.get<ChargeListResponse>('', query);
+  /** List charges with optional filters */
+  findBy(params?: ChargeListQuery) {
+    return this.get<ChargeListResponse>(undefined, { params });
   }
 
   /** Retrieve a single charge by its id */
@@ -32,12 +31,12 @@ export class Charges extends BaseResource {
   }
 
   /** Partial update – currently only metadata is supported */
-  update(id: string, payload: ChargeUpdateDto) {
-    return this.patch<ChargeResponse, ChargeUpdateDto>(`/${id}`, payload);
+  update(id: string, data: ChargeUpdateDto) {
+    return this.patch<ChargeResponse>(`/${id}`, { data });
   }
 
   /** Capture a transaction by its id */
   capture(id: string) {
-    return this.post<ChargeResponse, null>(null, `/${id}/capture`);
+    return this.post<ChargeResponse>(`/${id}/capture`);
   }
 }

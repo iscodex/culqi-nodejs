@@ -3,26 +3,76 @@ import type { CulqiOptions } from './culqi-client';
 // Ideally injected from package.json at build time
 const SDK_VERSION = '0.0.1';
 
-/**
- * Minimal HTTP adapter (Node ≥ 18) with simple retries and optional public‑key auth.
- */
+/* -------------------------------------------------------------------------- */
+/*                               Helper types                                 */
+/* -------------------------------------------------------------------------- */
+
+export interface RequestConfig {
+  /** URL‑encoded query params */
+  params?: Record<string, unknown>;
+  /** JSON payload for POST / PATCH */
+  data?: unknown;
+  /** Extra HTTP headers */
+  headers?: Record<string, string>;
+  /** Use **public** key instead of secret */
+  pub?: boolean;
+  /** Override default timeout (ms) */
+  timeout?: number;
+  /** Override retry attempts */
+  retries?: number;
+}
+
+export class CulqiError<T = unknown> extends Error {
+  constructor(
+    message: string,
+    public readonly status: number,
+    public readonly data: T | undefined,
+  ) {
+    super(message);
+    this.name = 'CulqiError';
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                               HttpClient                                   */
+/* -------------------------------------------------------------------------- */
+
+type Method = 'GET' | 'POST' | 'PATCH' | 'DELETE';
+
 export class HttpClient {
   constructor(private readonly opts: CulqiOptions) {}
 
-  /* ----------------------------------------------------------------------- */
-  /*                              Header helpers                             */
-  /* ----------------------------------------------------------------------- */
+  /* -------------------------- Public facade (Axios‑like) -------------------------- */
 
-  private buildHeaders(pub: boolean): Record<string, string> {
+  get<T = unknown>(url: string, cfg: RequestConfig = {}): Promise<T> {
+    return this.request<T>('GET', url, cfg);
+  }
+
+  post<T = unknown>(url: string, cfg: RequestConfig): Promise<T> {
+    return this.request<T>('POST', url, cfg);
+  }
+
+  patch<T = unknown>(url: string, cfg: RequestConfig): Promise<T> {
+    return this.request<T>('PATCH', url, cfg);
+  }
+
+  del<T = unknown>(url: string, cfg: RequestConfig = {}): Promise<T> {
+    return this.request<T>('DELETE', url, cfg);
+  }
+
+  /* ------------------------------ Internals --------------------------------- */
+
+  private headers(pub: boolean, extra?: Record<string, string>): Record<string, string> {
     return {
       'Content-Type': 'application/json',
       'User-Agent': `CulqiNodeSDK/${SDK_VERSION}`,
       Authorization: `Bearer ${pub ? this.opts.publicKey : this.opts.secretKey}`,
+      ...extra,
     };
   }
 
-  /** Serialize an object to query‑string – undefined / null values skipped. */
-  private static toQuery(params?: Record<string, unknown>): string {
+  /** Serialize query parameters */
+  private static serialize(params?: Record<string, unknown>): string {
     if (!params || Object.keys(params).length === 0) return '';
     const qs = new URLSearchParams();
     for (const [k, v] of Object.entries(params)) {
@@ -32,60 +82,45 @@ export class HttpClient {
     return s ? `?${s}` : '';
   }
 
-  /* ----------------------------------------------------------------------- */
-  /*                               Public API                                */
-  /* ----------------------------------------------------------------------- */
+  private async request<T>(method: Method, path: string, cfg: RequestConfig): Promise<T> {
+    const {
+      params,
+      data,
+      headers: extraHeaders,
+      pub = false,
+      timeout = this.opts.timeout ?? 8000,
+      retries = this.opts.retries ?? 2,
+    } = cfg;
 
-  get<T = unknown>(path: string, query?: Record<string, unknown>, pub = false): Promise<T> {
-    return this.request<T>('GET', `${path}${HttpClient.toQuery(query)}`, undefined, pub);
-  }
-
-  post<T = unknown, B = unknown>(path: string, body: B, pub = false): Promise<T> {
-    return this.request<T>('POST', path, body, pub);
-  }
-
-  patch<T = unknown, B = unknown>(path: string, body: B, pub = false): Promise<T> {
-    return this.request<T>('PATCH', path, body, pub);
-  }
-
-  del<T = unknown>(path: string, pub = false): Promise<T> {
-    return this.request<T>('DELETE', path, undefined, pub);
-  }
-
-  /* ----------------------------------------------------------------------- */
-  /*                                Internal                                 */
-  /* ----------------------------------------------------------------------- */
-
-  private async request<T>(
-    method: 'GET' | 'POST' | 'PATCH' | 'DELETE',
-    path: string,
-    body?: unknown,
-    pub = false,
-  ): Promise<T> {
-    const { retries = 2, timeout = 8000, baseUrl = 'https://api.culqi.com' } = this.opts;
-    const url = `${baseUrl}${path}`;
-    const headers = this.buildHeaders(pub);
+    const url = `${this.opts.baseUrl ?? 'https://api.culqi.com'}${path}${HttpClient.serialize(params)}`;
+    const headers = this.headers(pub, extraHeaders);
 
     let attempt = 0;
     while (attempt <= retries) {
       const res = await fetch(url, {
         method,
         headers,
-        body: body ? JSON.stringify(body) : undefined,
-        // @ts-expect-error – timeout not yet in lib.dom
+        body: data ? JSON.stringify(data) : undefined,
+        // @ts-expect-error Node fetch typings lack timeout
         timeout,
       });
 
-      if (res.ok) return (await res.json()) as T;
+      if (res.ok) {
+        return (await res.json().catch(() => undefined)) as T;
+      }
 
       if (attempt === retries) {
-        const errJson = await res.json().catch(() => ({}));
-        throw new Error(errJson?.merchant_message || `HTTP ${res.status} – ${res.statusText}`);
+        const errJson = await res.json().catch(() => undefined);
+        throw new CulqiError(
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (errJson as any)?.merchant_message || res.statusText,
+          res.status,
+          errJson,
+        );
       }
       attempt++;
     }
-
     /* istanbul ignore next */
-    throw new Error('Retry overflow');
+    throw new CulqiError('Retry overflow', 500, undefined);
   }
 }
