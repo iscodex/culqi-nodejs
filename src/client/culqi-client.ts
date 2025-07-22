@@ -16,6 +16,7 @@ export class CulqiClient<V extends CulqiVersion = '2'> {
   // Typed resources (different per version)
   readonly tokens: ResourceMap<V>['tokens'];
   readonly charges: ResourceMap<V>['charges'];
+  readonly refunds: ResourceMap<V>['refunds'];
   readonly customers: ResourceMap<V>['customers'];
   readonly cards: ResourceMap<V>['cards'];
   readonly plans: ResourceMap<V>['plans'];
@@ -26,6 +27,7 @@ export class CulqiClient<V extends CulqiVersion = '2'> {
     const resources = buildResources(opts.apiVersion, http);
     this.tokens = resources.tokens;
     this.charges = resources.charges;
+    this.refunds = resources.refunds;
     this.customers = resources.customers;
     this.cards = resources.cards;
     this.plans = resources.plans;

@@ -45,7 +45,7 @@ export interface ChargeCreateDto {
   /** Optional number of installments to be applied to the payment (5‑48 characters) */
   installments?: string;
   /** Optional metadata key/value pairs */
-  metadata?: Record<string, string>;
+  metadata?: Record<string, unknown>;
   /** Optional to detect possible fraud. */
   antifraud_details?: AntifraudDetails;
   /** Optional params 3DS */

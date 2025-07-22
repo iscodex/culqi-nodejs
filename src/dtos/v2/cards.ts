@@ -15,12 +15,12 @@ export interface CardCreateDto {
   token_id: string;
   validate?: boolean;
   authentication_3DS?: Authentication3DS;
-  metadata?: Record<string, string>;
+  metadata?: Record<string, unknown>;
 }
 
 export interface CardUpdateDto {
   token_id?: string;
-  metadata?: Record<string, string>;
+  metadata?: Record<string, unknown>;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -39,7 +39,7 @@ export interface CardResponse {
   creation_date: number;
   customer_id: string;
   source: TokenResponse;
-  metadata?: Record<string, string>;
+  metadata?: Record<string, unknown>;
 }
 
 export interface CardCancelResponse {

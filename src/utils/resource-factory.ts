@@ -15,6 +15,7 @@ export function buildResources<V extends CulqiVersion>(
       return {
         tokens: new V2.Tokens(http, version),
         charges: new V2.Charges(http, version),
+        refunds: new V2.Refunds(http, version),
         customers: new V2.Customers(http, version),
         cards: new V2.Cards(http, version),
         plans: new V2.Plans(http, version),
@@ -23,7 +24,6 @@ export function buildResources<V extends CulqiVersion>(
     // case '3':
     //   return {
     //     tokens: new V3.Tokens(http, version),
-    //     charges: new V3.Charges(http, version),
     //   } as ResourceMap<V>;
     /* istanbul ignore next */
     default:

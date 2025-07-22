@@ -26,7 +26,7 @@ export interface PlanCreateDto {
   interval_count: number;
   initial_cycles: InitialCycles;
   image?: string;
-  metadata?: Record<string, string>;
+  metadata?: Record<string, unknown>;
 }
 
 export interface PlanUpdateDto {
@@ -35,7 +35,7 @@ export interface PlanUpdateDto {
   description?: string;
   status?: 1 | 2;
   image?: string;
-  metadata?: Record<string, string>;
+  metadata?: Record<string, unknown>;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -58,7 +58,7 @@ export interface PlanResponse {
   description: string;
   currency: 'PEN' | 'USD';
   initial_cycles: InitialCycles;
-  metadata?: Record<string, string>;
+  metadata?: Record<string, unknown>;
   image: string | null;
   total_subscriptions: number;
   status: 1 | 2;
