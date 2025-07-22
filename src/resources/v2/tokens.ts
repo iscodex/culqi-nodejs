@@ -1,23 +1,23 @@
+import { BaseResource } from '../base-resource';
 import type { HttpClient } from '../../client/http-client';
 import type { TokenCreateDto, TokenResponse } from '../../dtos/v2/tokens';
 
-export class Tokens {
-  private readonly basePath: string;
-
-  constructor(
-    private readonly http: HttpClient,
-    apiVersion: string,
-  ) {
-    this.basePath = `/v${apiVersion}/tokens`;
+/**
+ * Token endpoints for API v2.
+ * `createToken` must use the public key; retrieval uses the secret key.
+ */
+export class Tokens extends BaseResource {
+  constructor(http: HttpClient, apiVersion: string) {
+    super(http, `/v${apiVersion}/tokens`);
   }
 
-  /** Create token (public key auth) */
-  async createToken(payload: TokenCreateDto): Promise<TokenResponse> {
-    return this.http.post(this.basePath, payload, true);
+  /** Create a token (public-key auth) */
+  createToken(payload: TokenCreateDto) {
+    return this.post<TokenResponse, TokenCreateDto>(payload, '', true);
   }
 
-  /** Retrieve token by id */
-  async getToken(id: string): Promise<TokenResponse> {
-    return this.http.get(`${this.basePath}/${id}`);
+  /** Retrieve a token by its ID (secret-key auth) */
+  getToken(id: string) {
+    return this.get<TokenResponse>(`/${id}`);
   }
 }

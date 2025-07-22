@@ -1,23 +1,19 @@
+import { BaseResource } from '../base-resource';
 import type { HttpClient } from '../../client/http-client';
 import type { ChargeCreateDto, ChargeResponse } from '../../dtos/v2/charges';
 
-export class Charges {
-  private readonly basePath: string;
-
-  constructor(
-    private readonly http: HttpClient,
-    apiVersion: string,
-  ) {
-    this.basePath = `/v${apiVersion}/charges`;
+export class Charges extends BaseResource {
+  constructor(http: HttpClient, apiVersion: string) {
+    super(http, `/v${apiVersion}/charges`);
   }
 
   /** Create a charge (secret key auth) */
-  async createCharge(payload: ChargeCreateDto): Promise<ChargeResponse> {
-    return this.http.post(this.basePath, payload, false);
+  createCharge(payload: ChargeCreateDto) {
+    return this.post<ChargeResponse, ChargeCreateDto>(payload);
   }
 
   /** Retrieve charge */
-  async getCharge(id: string): Promise<ChargeResponse> {
-    return this.http.get(`${this.basePath}/${id}`);
+  getCharge(id: string) {
+    return this.get<ChargeResponse>(`/${id}`);
   }
 }

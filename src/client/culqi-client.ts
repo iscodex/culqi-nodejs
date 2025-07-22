@@ -1,35 +1,31 @@
 import { HttpClient } from './http-client';
-import { Tokens } from '../resources/v2/tokens';
-import { Charges } from '../resources/v2/charges';
+import { buildResources } from '../utils/resource-factory';
+import type { CulqiVersion, ResourceMap } from '../types';
 
-export interface CulqiOptions {
+export interface CulqiOptions<V extends CulqiVersion = '2'> {
   publicKey: string;
   secretKey: string;
-  apiVersion: '2'; // "2" | "3"
+  apiVersion: V;
   baseUrl?: string;
   retries?: number;
   timeout?: number;
 }
 
-/**
- * High‑level Culqi client. Holds configuration and exposes typed resources.
- */
-export class CulqiClient {
-  /** Token resource wrapper (public‑key auth) */
-  readonly tokens: Tokens;
+/** High-level Culqi client exposing versioned resources. */
+export class CulqiClient<V extends CulqiVersion = '2'> {
+  // Typed resources (different per version)
+  readonly tokens: ResourceMap<V>['tokens'];
+  readonly charges: ResourceMap<V>['charges'];
 
-  /** Charges resource wrapper (secret‑key auth) */
-  readonly charges: Charges;
-
-  private constructor(private readonly opts: CulqiOptions) {
+  private constructor(private readonly opts: CulqiOptions<V>) {
     const http = new HttpClient(opts);
-
-    this.tokens = new Tokens(http, opts.apiVersion);
-    this.charges = new Charges(http, opts.apiVersion);
+    const resources = buildResources(opts.apiVersion, http);
+    this.tokens = resources.tokens;
+    this.charges = resources.charges;
   }
 
-  /** Fluent initializer */
-  static init(opts: CulqiOptions): CulqiClient {
+  /** Fluent initializer with sensible defaults. */
+  static init<V extends CulqiVersion>(opts: CulqiOptions<V>): CulqiClient<V> {
     return new CulqiClient({
       baseUrl: 'https://api.culqi.com',
       retries: 2,

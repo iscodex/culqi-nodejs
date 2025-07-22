@@ -49,11 +49,12 @@ await culqi.charges.createCharge({
 ```
 ├─ src/
 │  ├─ client/
-│  │   ├─ CulqiClient.ts
-│  │   └─ HttpClient.ts
+│  │   ├─ culqi-client.ts
+│  │   └─ http-client.ts
 │  ├─ resources/
-│  │   ├─ Tokens.ts
-│  │   └─ Charges.ts
+│  │   └─ v2/
+│  │       ├─ tokens.ts
+│  │       └─ charges.ts
 │  ├─ dtos/
 │  │   └─ v2/
 │  │       ├─ tokens.ts
