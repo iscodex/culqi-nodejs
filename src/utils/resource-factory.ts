@@ -15,6 +15,7 @@ export function buildResources<V extends CulqiVersion>(
       return {
         tokens: new V2.Tokens(http, version),
         charges: new V2.Charges(http, version),
+        customers: new V2.Customers(http, version),
       } as ResourceMap<V>;
     // case '3':
     //   return {

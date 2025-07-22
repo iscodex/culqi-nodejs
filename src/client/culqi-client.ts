@@ -16,12 +16,16 @@ export class CulqiClient<V extends CulqiVersion = '2'> {
   // Typed resources (different per version)
   readonly tokens: ResourceMap<V>['tokens'];
   readonly charges: ResourceMap<V>['charges'];
+  readonly customers: ResourceMap<V>['customers'];
+  readonly cards: ResourceMap<V>['cards'];
 
   private constructor(private readonly opts: CulqiOptions<V>) {
     const http = new HttpClient(opts);
     const resources = buildResources(opts.apiVersion, http);
     this.tokens = resources.tokens;
     this.charges = resources.charges;
+    this.customers = resources.customers;
+    this.cards = resources.cards;
   }
 
   /** Fluent initializer with sensible defaults. */
