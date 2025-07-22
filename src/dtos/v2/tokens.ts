@@ -103,7 +103,7 @@ export interface TokenListResponse {
   paging: Paging;
 }
 
-export interface TokenListQuery {
+export interface TokenListQuery extends Record<string, unknown> {
   creation_date?: string;
   creation_date_from?: string;
   creation_date_to?: string;

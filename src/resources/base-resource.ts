@@ -6,15 +6,17 @@ export abstract class BaseResource {
     protected readonly basePath: string,
   ) {}
 
-  protected get<T>(suffix = '') {
-    return this.http.get<T>(`${this.basePath}${suffix}`);
+  /* ----------------------------- Helper wrappers ---------------------------- */
+
+  protected get<T>(suffix = '', query?: Record<string, unknown>, pub = false) {
+    return this.http.get<T>(`${this.basePath}${suffix}`, query, pub);
   }
 
   protected post<T, B>(body: B, suffix = '', pub = false) {
     return this.http.post<T, B>(`${this.basePath}${suffix}`, body, pub);
   }
 
-  protected patch<T, B>(body: B, suffix = '', pub = false) {
+  protected patch<T, B>(suffix: string, body: B, pub = false) {
     return this.http.patch<T, B>(`${this.basePath}${suffix}`, body, pub);
   }
 

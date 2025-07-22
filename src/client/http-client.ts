@@ -1,49 +1,70 @@
 import type { CulqiOptions } from './culqi-client';
 
+// Ideally injected from package.json at build time
 const SDK_VERSION = '0.0.1';
 
+/**
+ * Minimal HTTP adapter (Node ≥ 18) with simple retries and optional public‑key auth.
+ */
 export class HttpClient {
   constructor(private readonly opts: CulqiOptions) {}
 
-  /** Build default headers for Culqi */
-  private buildHeaders(usePublicKey: boolean): Record<string, string> {
+  /* ----------------------------------------------------------------------- */
+  /*                              Header helpers                             */
+  /* ----------------------------------------------------------------------- */
+
+  private buildHeaders(pub: boolean): Record<string, string> {
     return {
       'Content-Type': 'application/json',
       'User-Agent': `CulqiNodeSDK/${SDK_VERSION}`,
-      Authorization: `Bearer ${usePublicKey ? this.opts.publicKey : this.opts.secretKey}`,
+      Authorization: `Bearer ${pub ? this.opts.publicKey : this.opts.secretKey}`,
     };
   }
 
-  /* ------------------------------- Public API ------------------------------- */
-
-  get<T = unknown>(path: string): Promise<T> {
-    return this.request<T>('GET', path);
+  /** Serialize an object to query‑string – undefined / null values skipped. */
+  private static toQuery(params?: Record<string, unknown>): string {
+    if (!params || Object.keys(params).length === 0) return '';
+    const qs = new URLSearchParams();
+    for (const [k, v] of Object.entries(params)) {
+      if (v !== undefined && v !== null) qs.append(k, String(v));
+    }
+    const s = qs.toString();
+    return s ? `?${s}` : '';
   }
 
-  post<T = unknown, B = unknown>(path: string, body: B, usePublicKey = false): Promise<T> {
-    return this.request<T>('POST', path, body, usePublicKey);
+  /* ----------------------------------------------------------------------- */
+  /*                               Public API                                */
+  /* ----------------------------------------------------------------------- */
+
+  get<T = unknown>(path: string, query?: Record<string, unknown>, pub = false): Promise<T> {
+    return this.request<T>('GET', `${path}${HttpClient.toQuery(query)}`, undefined, pub);
   }
 
-  patch<T = unknown, B = unknown>(path: string, body: B, usePublicKey = false): Promise<T> {
-    return this.request<T>('PATCH', path, body, usePublicKey);
+  post<T = unknown, B = unknown>(path: string, body: B, pub = false): Promise<T> {
+    return this.request<T>('POST', path, body, pub);
   }
 
-  /** `delete` is reserved, so we expose `del` instead. */
-  del<T = unknown>(path: string, usePublicKey = false): Promise<T> {
-    return this.request<T>('DELETE', path, undefined, usePublicKey);
+  patch<T = unknown, B = unknown>(path: string, body: B, pub = false): Promise<T> {
+    return this.request<T>('PATCH', path, body, pub);
   }
 
-  /* ------------------------------ Internals --------------------------------- */
+  del<T = unknown>(path: string, pub = false): Promise<T> {
+    return this.request<T>('DELETE', path, undefined, pub);
+  }
+
+  /* ----------------------------------------------------------------------- */
+  /*                                Internal                                 */
+  /* ----------------------------------------------------------------------- */
 
   private async request<T>(
     method: 'GET' | 'POST' | 'PATCH' | 'DELETE',
     path: string,
     body?: unknown,
-    usePublicKey = false,
+    pub = false,
   ): Promise<T> {
     const { retries = 2, timeout = 8000, baseUrl = 'https://api.culqi.com' } = this.opts;
     const url = `${baseUrl}${path}`;
-    const headers = this.buildHeaders(usePublicKey);
+    const headers = this.buildHeaders(pub);
 
     let attempt = 0;
     while (attempt <= retries) {
@@ -51,7 +72,7 @@ export class HttpClient {
         method,
         headers,
         body: body ? JSON.stringify(body) : undefined,
-        // @ts-expect-error Node fetch typings still lack timeout
+        // @ts-expect-error – timeout not yet in lib.dom
         timeout,
       });
 
@@ -63,7 +84,8 @@ export class HttpClient {
       }
       attempt++;
     }
+
     /* istanbul ignore next */
-    throw new Error('Unexpected retry overflow');
+    throw new Error('Retry overflow');
   }
 }

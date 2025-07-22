@@ -1,6 +1,13 @@
 import { BaseResource } from '../base-resource';
 import type { HttpClient } from '../../client/http-client';
-import type { TokenCreateDto, TokenResponse } from '../../dtos/v2/tokens';
+import type {
+  TokenCreateDto,
+  TokenCreateYapeDto,
+  TokenListQuery,
+  TokenListResponse,
+  TokenResponse,
+  TokenUpdateDto,
+} from '../../dtos/v2/tokens';
 
 /**
  * Token endpoints for API v2.
@@ -11,13 +18,28 @@ export class Tokens extends BaseResource {
     super(http, `/v${apiVersion}/tokens`);
   }
 
-  /** Create a token (public-key auth) */
-  createToken(payload: TokenCreateDto) {
+  /** Create a card token (public‑key auth) */
+  create(payload: TokenCreateDto) {
     return this.post<TokenResponse, TokenCreateDto>(payload, '', true);
   }
 
-  /** Retrieve a token by its ID (secret-key auth) */
-  getToken(id: string) {
+  /** Create a Yape token (public‑key auth) */
+  createYape(payload: TokenCreateYapeDto) {
+    return this.post<TokenResponse, TokenCreateYapeDto>(payload, '/yape', true);
+  }
+
+  /** Partial update – currently only metadata is supported */
+  update(id: string, payload: TokenUpdateDto) {
+    return this.patch<TokenResponse, TokenUpdateDto>(`/${id}`, payload);
+  }
+
+  /** Retrieve a single token by its id (secret‑key auth) */
+  find(id: string) {
     return this.get<TokenResponse>(`/${id}`);
+  }
+
+  /** List tokens with optional filters */
+  findBy(query?: TokenListQuery) {
+    return this.get<TokenListResponse>('', query);
   }
 }
