@@ -1,6 +1,6 @@
 /**
  * Data Transfer Objects for Card endpoints (API v2)
- * Docs: https://apidocs.culqi.com/#tag/Tarjetas/operation/crear-tarjeta
+ * Docs: https://apidocs.culqi.com/#tag/Tarjetas
  */
 
 import { Authentication3DS } from './charges';
