@@ -1,0 +1,49 @@
+{
+  "name": "@culqi/node-sdk",
+  "version": "0.0.1",
+  "description": "Official Culqi SDK for Node.js (zero runtime deps)",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "jest --coverage",
+    "lint": "eslint --ext .ts src tests",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.0.15",
+    "@typescript-eslint/eslint-plugin": "^8.38.0",
+    "@typescript-eslint/parser": "^8.38.0",
+    "eslint": "^9.31.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.3",
+    "jest": "^30.0.5",
+    "prettier": "^3.6.2",
+    "ts-jest": "^29.4.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "author": "Francisco Luis Rios Vega <alckordev@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "culqi",
+    "payments",
+    "sdk",
+    "typescript",
+    "node"
+  ]
+}
