@@ -38,7 +38,7 @@ export interface CustomerResponse {
   metadata?: Record<string, string>;
 }
 
-export interface CustomerDeletingResponse {
+export interface CustomerCancelResponse {
   id: string;
   deleted: boolean;
   merchant_message: string;

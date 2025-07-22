@@ -1,7 +1,7 @@
 import { HttpClient } from '../../client/http-client';
 import {
   CardCreateDto,
-  CardDeletingResponse,
+  CardCancelResponse,
   CardListQuery,
   CardListResponse,
   CardPendingResponse,
@@ -37,6 +37,6 @@ export class Cards extends BaseResource {
 
   /** Delete a single card by its id */
   remove(id: string) {
-    return this.del<CardDeletingResponse>(`/${id}`);
+    return this.del<CardCancelResponse>(`/${id}`);
   }
 }

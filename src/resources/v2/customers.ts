@@ -1,7 +1,7 @@
 import { HttpClient } from '../../client/http-client';
 import {
   CustomerCreateDto,
-  CustomerDeletingResponse,
+  CustomerCancelResponse,
   CustomerListQuery,
   CustomerListResponse,
   CustomerResponse,
@@ -36,6 +36,6 @@ export class Customers extends BaseResource {
 
   /** Delete a single customer by its id */
   remove(id: string) {
-    return this.del<CustomerDeletingResponse>(`/${id}`);
+    return this.del<CustomerCancelResponse>(`/${id}`);
   }
 }

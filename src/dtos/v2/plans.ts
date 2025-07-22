@@ -42,7 +42,7 @@ export interface PlanUpdateDto {
 /*                                  Responses                                 */
 /* -------------------------------------------------------------------------- */
 
-export interface PlanSavingResponse {
+export interface PlanCreateResponse {
   id: string;
   slug: string;
 }
@@ -66,7 +66,7 @@ export interface PlanResponse {
   slug: string;
 }
 
-export interface PlanDeletingResponse {
+export interface PlanCancelResponse {
   id: string;
   deleted: boolean;
   merchant_message: string;

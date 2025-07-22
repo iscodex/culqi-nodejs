@@ -42,7 +42,7 @@ export interface CardResponse {
   metadata?: Record<string, string>;
 }
 
-export interface CardDeletingResponse {
+export interface CardCancelResponse {
   id: string;
   deleted: boolean;
   merchant_message: string;

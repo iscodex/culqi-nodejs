@@ -1,11 +1,11 @@
 import { HttpClient } from '../../client/http-client';
 import {
   PlanCreateDto,
-  PlanDeletingResponse,
+  PlanCancelResponse,
   PlanListQuery,
   PlanListResponse,
   PlanResponse,
-  PlanSavingResponse,
+  PlanCreateResponse,
   PlanUpdateDto,
 } from '../../dtos/v2/plans';
 import { BaseResource } from '../base-resource';
@@ -17,7 +17,7 @@ export class Plans extends BaseResource {
 
   /** Create a plan */
   create(data: PlanCreateDto) {
-    return this.post<PlanSavingResponse>('/create', { data });
+    return this.post<PlanCreateResponse>('/create', { data });
   }
 
   /** List plans with optional filters */
@@ -37,6 +37,6 @@ export class Plans extends BaseResource {
 
   /** Delete a single plan by its id */
   remove(id: string) {
-    return this.del<PlanDeletingResponse>(`/${id}`);
+    return this.del<PlanCancelResponse>(`/${id}`);
   }
 }
