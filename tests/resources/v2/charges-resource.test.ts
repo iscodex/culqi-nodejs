@@ -16,7 +16,7 @@ describe('Charges resource (v2)', () => {
   });
 
   it('create() posts a charge', async () => {
-    const body = {
+    const payload = {
       amount: 10000,
       currency_code: 'PEN',
       email: 'richard@piedpiper.com',
@@ -25,10 +25,10 @@ describe('Charges resource (v2)', () => {
 
     http.post.mockResolvedValue({ id: 'chr_123' });
 
-    const res = await charges.create(body);
+    const res = await charges.create(payload);
 
     expect(http.post).toHaveBeenCalledWith('/v2/charges', {
-      data: body,
+      data: payload,
       pub: false,
     });
     expect(res).toEqual({ id: 'chr_123' });

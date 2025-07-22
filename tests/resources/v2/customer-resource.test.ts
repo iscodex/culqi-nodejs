@@ -16,7 +16,7 @@ describe('Customers resource (v2)', () => {
   });
 
   it('create() posts a customer', async () => {
-    const body = {
+    const payload = {
       first_name: 'Jane',
       last_name: 'Doe',
       email: 'jane@gmail.com',
@@ -28,10 +28,10 @@ describe('Customers resource (v2)', () => {
 
     http.post.mockResolvedValue({ id: 'cus_123' });
 
-    const res = await customers.create(body);
+    const res = await customers.create(payload);
 
     expect(http.post).toHaveBeenCalledWith('/v2/customers', {
-      data: body,
+      data: payload,
       pub: false,
     });
     expect(res).toEqual({ id: 'cus_123' });

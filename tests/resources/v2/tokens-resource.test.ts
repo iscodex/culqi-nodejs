@@ -16,7 +16,7 @@ describe('Tokens resource (v2)', () => {
   });
 
   it('create() posts card token with public key', async () => {
-    const body = {
+    const payload = {
       card_number: '4111111111111111',
       cvv: '123',
       expiration_month: '07',
@@ -26,23 +26,23 @@ describe('Tokens resource (v2)', () => {
 
     http.post.mockResolvedValue({ id: 'tkn_123' });
 
-    const res = await tokens.create(body);
+    const res = await tokens.create(payload);
 
     expect(http.post).toHaveBeenCalledWith('/v2/tokens', {
-      data: body,
+      data: payload,
       pub: true,
     });
     expect(res).toEqual({ id: 'tkn_123' });
   });
 
   it('createYape() posts Yape token with public key', async () => {
-    const body = { otp: '123456', number_phone: '987654321', amount: '1000' } as any;
+    const payload = { otp: '123456', number_phone: '987654321', amount: '1000' } as any;
     http.post.mockResolvedValue({ id: 'tok_yape_123' });
 
-    const res = await tokens.createYape(body);
+    const res = await tokens.createYape(payload);
 
     expect(http.post).toHaveBeenCalledWith('/v2/tokens/yape', {
-      data: body,
+      data: payload,
       pub: true,
     });
     expect(res).toEqual({ id: 'tok_yape_123' });
