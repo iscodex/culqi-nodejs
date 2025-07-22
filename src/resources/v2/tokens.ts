@@ -1,4 +1,3 @@
-import { BaseResource } from '../base-resource';
 import type { HttpClient } from '../../client/http-client';
 import type {
   TokenCreateDto,
@@ -8,6 +7,7 @@ import type {
   TokenResponse,
   TokenUpdateDto,
 } from '../../dtos/v2/tokens';
+import { BaseResource } from '../base-resource';
 
 /** Token endpoints for API v2 */
 export class Tokens extends BaseResource {

@@ -1,4 +1,3 @@
-import { BaseResource } from '../base-resource';
 import type { HttpClient } from '../../client/http-client';
 import type {
   ChargeCreateDto,
@@ -8,6 +7,7 @@ import type {
   ChargeResponse,
   ChargeUpdateDto,
 } from '../../dtos/v2/charges';
+import { BaseResource } from '../base-resource';
 
 /** Charge endpoints for API v2 */
 export class Charges extends BaseResource {
