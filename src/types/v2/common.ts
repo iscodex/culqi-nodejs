@@ -38,13 +38,22 @@ export type FeeDetails = {
   variable_fee: VariableFeeDetail;
 };
 
-export interface NoAuthResponse {
+export type NoAuthResponse = {
   user_message: string;
   action_code: string;
-}
+};
 
-export interface DeleteResponse {
+export type DeleteResponse = {
   id: string;
   deleted: boolean;
   merchant_message: string;
-}
+};
+
+export type Pagination = {
+  total_records: number;
+  total_pages: number;
+  prev_page: number | null;
+  next_page: number | null;
+  page: number;
+  limit: number;
+};

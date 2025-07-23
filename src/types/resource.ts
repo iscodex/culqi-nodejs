@@ -7,6 +7,7 @@ import { Plans as PlansV2 } from '../resources/v2/plans.resource';
 import { Subscriptions as SubscriptionsV2 } from '../resources/v2/subscriptions.resource';
 import { Orders as OrdersV2 } from '../resources/v2/orders.resource';
 import { Events as EventsV2 } from '../resources/v2/events.resource';
+import { Statements as StatementsV2 } from '../resources/v2/statements.resource';
 
 // import { Tokens as TokensV3 } from '../resources/v3/tokens';
 
@@ -24,5 +25,6 @@ export type ResourceMap<V extends CulqiVersion> = V extends '2'
       subscriptions: SubscriptionsV2;
       orders: OrdersV2;
       events: EventsV2;
+      statements: StatementsV2;
     }
   : undefined;

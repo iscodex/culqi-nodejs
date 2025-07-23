@@ -23,6 +23,7 @@ export function buildResources<V extends CulqiVersion>(
         subscriptions: new V2.Subscriptions(http, version),
         orders: new V2.Orders(http, version),
         events: new V2.Events(http, version),
+        statements: new V2.Statements(http, version),
       } as ResourceMap<V>;
     default:
       throw new Error(`Unsupported API version: ${version}`);

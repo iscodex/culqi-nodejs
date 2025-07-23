@@ -7,3 +7,4 @@ export { Plans } from './plans.resource';
 export { Subscriptions } from './subscriptions.resource';
 export { Orders } from './orders.resource';
 export { Events } from './events.resource';
+export { Statements } from './statements.resource';
