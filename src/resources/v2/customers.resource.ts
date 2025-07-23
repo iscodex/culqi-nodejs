@@ -9,32 +9,57 @@ import {
 } from '../../types/v2/customers';
 import { BaseResource } from '../base.resource';
 
+/**
+ * Customers endpoints for API v2
+ *
+ * @see {@link https://apidocs.culqi.com/#tag/Clientes Documentation}.
+ * */
 export class Customers extends BaseResource {
   constructor(http: HttpClient, apiVersion: string) {
     super(http, `/v${apiVersion}/customers`);
   }
 
-  /** Create a customer */
+  /**
+   * Create customer
+   *
+   * @see {@link https://github.com/iscodex/culqi-nodejs/blob/main/src/examples/customers/create.ts Usage Example}
+   * */
   create(data: CustomerCreateInput) {
     return this.post<CustomerResponse>(undefined, { data });
   }
 
-  /** List customers with optional filters */
+  /**
+   * List customers
+   *
+   * @see {@link https://github.com/iscodex/culqi-nodejs/blob/main/src/examples/customers/find-by.ts Usage Example}
+   * */
   findBy(params?: CustomerListQuery) {
     return this.get<CustomerListResponse>(undefined, { params });
   }
 
-  /** Retrieve a single customer by its id */
+  /**
+   * Get customer
+   *
+   * @see {@link https://github.com/iscodex/culqi-nodejs/blob/main/src/examples/customers/find.ts Usage Example}
+   * */
   find(id: string) {
     return this.get<CustomerResponse>(`/${id}`);
   }
 
-  /** Partial update a customer by its id */
+  /**
+   * Update customer
+   *
+   * @see {@link https://github.com/iscodex/culqi-nodejs/blob/main/src/examples/customers/update.ts Usage Example}
+   * */
   update(id: string, data: CustomerUpdateInput) {
     return this.patch<CustomerResponse>(`/${id}`, { data });
   }
 
-  /** Delete a single customer by its id */
+  /**
+   * Delete customer
+   *
+   * @see {@link https://github.com/iscodex/culqi-nodejs/blob/main/src/examples/customers/remove.ts Usage Example}
+   * */
   remove(id: string) {
     return this.del<DeleteResponse>(`/${id}`);
   }

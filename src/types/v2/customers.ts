@@ -7,7 +7,7 @@ import { AntifraudDetails, Paging } from './common';
 export type CustomerCreateInput = {
   address: string;
   address_city: string;
-  currency_code: 'PEN' | 'USD';
+  country_code: string;
   email: string;
   first_name: string;
   last_name: string;
@@ -45,7 +45,7 @@ export type CustomerListQuery = {
   address?: string;
   address_city?: string;
   phone_number?: string;
-  currency_code?: 'PEN' | 'USD';
+  country_code?: string;
   limit?: string;
   before?: string;
   after?: string;
