@@ -4,42 +4,36 @@ import tsParser from '@typescript-eslint/parser';
 import prettier from 'eslint-plugin-prettier';
 
 export default [
-  // Ignore patterns
+  /* ignore */
   {
-    ignores: ['dist/**', 'coverage/**', 'node_modules/**'],
+    ignores: ['dist/**', 'coverage/**', 'node_modules/**', 'jest.config.ts', 'jest.e2e.config.ts'],
   },
-
-  // Base JS recommended rules
+  /* JS base */
   js.configs.recommended,
-
-  // TypeScript rules
+  /* TS files */
   {
     files: ['**/*.ts'],
     languageOptions: {
       parser: tsParser,
-      parserOptions: {
-        project: './tsconfig.json',
-      },
-      globals: {
-        // Let ESLint know fetch is available (Node >= 18)
-        fetch: 'readonly',
-        console: 'readonly',
-      },
+      parserOptions: { project: './tsconfig.json' },
+      env: { node: true },
+      // // Let ESLint know fetch is available (Node >= 18)
+      // globals: { fetch: 'readonly', console: 'readonly' },
     },
-    plugins: {
-      '@typescript-eslint': tsPlugin,
-      prettier,
-    },
+    plugins: { '@typescript-eslint': tsPlugin, prettier },
     rules: {
       ...tsPlugin.configs.recommended.rules,
       'prettier/prettier': 'error',
       '@typescript-eslint/no-explicit-any': ['error', { ignoreRestArgs: false }],
     },
   },
-
-  // Relax rules for generated DTOs and tests
+  /* Relax rules only for test files and generated types */
   {
-    files: ['src/types/**', 'tests/**'],
+    files: ['src/types/**', '**/*.spec.ts', '**/*.e2e.spec.ts'],
+    languageOptions: {
+      parserOptions: { project: './tsconfig.json' },
+      env: { jest: true, node: true },
+    },
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
     },

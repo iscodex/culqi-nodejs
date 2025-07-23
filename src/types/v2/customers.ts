@@ -46,7 +46,7 @@ export type CustomerListQuery = {
   address_city?: string;
   phone_number?: string;
   country_code?: string;
-  limit?: string;
+  limit?: number;
   before?: string;
   after?: string;
 };

@@ -78,7 +78,7 @@ export type PlanListQuery = {
   max_amount?: number;
   creation_date_from?: number;
   creation_date_to?: number;
-  limit?: string;
+  limit?: number;
   before?: string;
   after?: string;
 };

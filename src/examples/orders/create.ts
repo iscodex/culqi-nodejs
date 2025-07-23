@@ -12,7 +12,7 @@ culqi.orders
     currency_code: 'PEN',
     description: 'Lorem ipsum...',
     order_number: '#id-9999',
-    expiration_date: '1476132639',
+    expiration_date: 1476132639,
     client_details: {
       first_name: 'Jane',
       last_name: 'Doe',

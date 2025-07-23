@@ -16,7 +16,7 @@ export type OrderCreateInput = {
   currency_code: 'PEN' | 'USD';
   description: string;
   order_number: string;
-  expiration_date: string;
+  expiration_date: number;
   client_details: ClientDetails;
   confirm?: boolean;
   metadata?: Record<string, unknown>;
@@ -74,7 +74,7 @@ export type OrderListQuery = {
   creation_date_from?: number;
   creation_date_to?: number;
   state?: 'created' | 'pending';
-  limit?: string;
+  limit?: number;
   before?: string;
   after?: string;
 };

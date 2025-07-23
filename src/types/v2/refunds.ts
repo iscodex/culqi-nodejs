@@ -38,14 +38,14 @@ export type RefundListResponse = {
 };
 
 export type RefundListQuery = {
-  creation_date?: string;
-  creation_date_from?: string;
-  creation_date_to?: string;
+  creation_date?: number;
+  creation_date_from?: number;
+  creation_date_to?: number;
   reason?: 'duplicado' | 'fraudulento' | 'solicitud_comprador';
-  modification_date_from?: string;
-  modification_date_to?: string;
+  modification_date_from?: number;
+  modification_date_to?: number;
   status?: 'pendiente' | 'rechazado' | 'completado';
-  limit?: string;
+  limit?: number;
   before?: string;
   after?: string;
 };

@@ -40,15 +40,15 @@ export type CardListResponse = {
 };
 
 export type CardListQuery = {
-  creation_date?: string;
-  creation_date_from?: string;
-  creation_date_to?: string;
+  creation_date?: number;
+  creation_date_from?: number;
+  creation_date_to?: number;
   card_brand?: 'Visa' | 'Mastercard' | 'Amex' | 'Diner';
   card_type?: 'credito' | 'debito' | 'prepagada';
   device_type?: 'escritorio' | 'movil' | 'tablet';
-  bin?: string;
+  bin?: number;
   country_code?: string;
-  limit?: string;
+  limit?: number;
   before?: string;
   after?: string;
 };
