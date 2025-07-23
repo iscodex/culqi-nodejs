@@ -5,6 +5,7 @@ import { Customers as CustomersV2 } from './resources/v2/customers';
 import { Cards as CardsV2 } from './resources/v2/cards';
 import { Plans as PlansV2 } from './resources/v2/plans';
 import { Subscriptions as SubscriptionsV2 } from './resources/v2/subscriptions';
+import { Orders as OrdersV2 } from './resources/v2/orders';
 
 // import { Tokens as TokensV3 } from './resources/v3/tokens';
 
@@ -20,5 +21,6 @@ export type ResourceMap<V extends CulqiVersion> = V extends '2'
       cards: CardsV2;
       plans: PlansV2;
       subscriptions: SubscriptionsV2;
+      orders: OrdersV2;
     }
-  : { tokens: TokensV2 };
+  : undefined;

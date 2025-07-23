@@ -21,6 +21,7 @@ export class CulqiClient<V extends CulqiVersion = '2'> {
   readonly cards: ResourceMap<V>['cards'];
   readonly plans: ResourceMap<V>['plans'];
   readonly subscriptions: ResourceMap<V>['subscriptions'];
+  readonly orders: ResourceMap<V>['orders'];
 
   private constructor(private readonly opts: CulqiOptions<V>) {
     const http = new HttpClient(opts);
@@ -32,6 +33,7 @@ export class CulqiClient<V extends CulqiVersion = '2'> {
     this.cards = resources.cards;
     this.plans = resources.plans;
     this.subscriptions = resources.subscriptions;
+    this.orders = resources.orders;
   }
 
   /** Fluent initializer with sensible defaults. */
