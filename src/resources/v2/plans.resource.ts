@@ -1,3 +1,5 @@
+import { HttpClient } from '../../client/http-client';
+import { DeleteResponse } from '../../types/v2/common';
 import {
   PlanCreateInput,
   PlanCreateResponse,
@@ -5,10 +7,8 @@ import {
   PlanListResponse,
   PlanResponse,
   PlanUpdateInput,
-} from '@src/types/v2/plans';
-import { HttpClient } from '../../client/http-client';
+} from '../../types/v2/plans';
 import { BaseResource } from '../base.resource';
-import { DeleteResponse } from '@src/types/v2';
 
 export class Plans extends BaseResource {
   constructor(http: HttpClient, apiVersion: string) {

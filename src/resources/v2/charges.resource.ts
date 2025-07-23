@@ -1,13 +1,13 @@
+import { HttpClient } from '../../client/http-client';
 import {
   ChargeCreateInput,
+  ChargeResponse,
   ChargeListQuery,
   ChargeListResponse,
-  ChargeResponse,
   ChargeUpdateInput,
-} from '@src/types/v2/charges';
-import type { HttpClient } from '../../client/http-client';
+} from '../../types/v2/charges';
+import { NoAuthResponse } from '../../types/v2/common';
 import { BaseResource } from '../base.resource';
-import { NoAuthResponse } from '@src/types/v2';
 
 /** Charge endpoints for API v2 */
 export class Charges extends BaseResource {

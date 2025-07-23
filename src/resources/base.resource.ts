@@ -1,4 +1,4 @@
-import { HttpClient, RequestConfig } from '@client/http-client';
+import { HttpClient, RequestConfig } from '../client/http-client';
 
 /**
  * Shared helpers for resource classes.

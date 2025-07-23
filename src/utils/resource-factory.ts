@@ -1,6 +1,6 @@
-import { CulqiVersion, ResourceMap } from '@src/type';
-import { HttpClient } from '@client/http-client';
-import * as V2 from '@resources/v2';
+import { HttpClient } from '../client/http-client';
+import { CulqiVersion, ResourceMap } from '../types/resource';
+import * as V2 from '../resources/v2';
 
 // import * as V3 from '../resources/v3';
 

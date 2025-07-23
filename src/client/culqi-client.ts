@@ -1,5 +1,5 @@
-import { CulqiVersion, ResourceMap } from '@src/type';
-import { buildResources } from '@utils/resource-factory';
+import { CulqiVersion, ResourceMap } from '../types/resource';
+import { buildResources } from '../utils/resource-factory';
 import { HttpClient } from './http-client';
 
 export interface CulqiOptions<V extends CulqiVersion = '2'> {

@@ -31,12 +31,6 @@ export type CustomerResponse = {
   metadata?: Record<string, unknown>;
 };
 
-export type CustomerCancelResponse = {
-  id: string;
-  deleted: boolean;
-  merchant_message: string;
-};
-
 /* ------------------------------ List helpers ------------------------------ */
 
 export type CustomerListResponse = {

@@ -1,13 +1,12 @@
+import { HttpClient } from '../../client/http-client';
+import { DeleteResponse } from '../../types/v2/common';
 import {
-  CustomerCancelResponse,
   CustomerCreateInput,
+  CustomerResponse,
   CustomerListQuery,
   CustomerListResponse,
-  CustomerResponse,
   CustomerUpdateInput,
-} from '@src/types/v2/customers';
-import { HttpClient } from '../../client/http-client';
-
+} from '../../types/v2/customers';
 import { BaseResource } from '../base.resource';
 
 export class Customers extends BaseResource {
@@ -37,6 +36,6 @@ export class Customers extends BaseResource {
 
   /** Delete a single customer by its id */
   remove(id: string) {
-    return this.del<CustomerCancelResponse>(`/${id}`);
+    return this.del<DeleteResponse>(`/${id}`);
   }
 }

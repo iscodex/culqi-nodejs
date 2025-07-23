@@ -1,12 +1,12 @@
+import { HttpClient } from '../../client/http-client';
 import {
   TokenCreateInput,
-  TokenCreateYapeInput,
+  TokenResponse,
   TokenListQuery,
   TokenListResponse,
-  TokenResponse,
   TokenUpdateInput,
-} from '@src/types/v2/tokens';
-import type { HttpClient } from '../../client/http-client';
+  TokenCreateYapeInput,
+} from '../../types/v2/tokens';
 import { BaseResource } from '../base.resource';
 
 /** Token endpoints for API v2 */

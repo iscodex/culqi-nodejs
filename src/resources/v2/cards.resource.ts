@@ -1,13 +1,13 @@
+import { HttpClient } from '../../client/http-client';
 import {
   CardCreateInput,
+  CardResponse,
   CardListQuery,
   CardListResponse,
-  CardResponse,
   CardUpdateInput,
-} from '@src/types/v2/cards';
-import { HttpClient } from '../../client/http-client';
+} from '../../types/v2/cards';
+import { NoAuthResponse, DeleteResponse } from '../../types/v2/common';
 import { BaseResource } from '../base.resource';
-import { DeleteResponse, NoAuthResponse } from '@src/types/v2';
 
 export class Cards extends BaseResource {
   constructor(http: HttpClient, apiVersion: string) {

@@ -13,14 +13,7 @@
     "resolveJsonModule": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "skipLibCheck": true,
-    "paths": {
-      "@src/*": ["./src/*"],
-      "@client/*": ["./src/client/*"],
-      "@typesV2/*": ["./src/types/v2/*"],
-      "@resources/*": ["./src/resources/*"],
-      "@utils/*": ["./src/utils/*"]
-    }
+    "skipLibCheck": true
   },
   "include": ["src/**/*", "tests/**/*"]
 }

@@ -1,5 +1,5 @@
 import { describe, expect, it, jest } from '@jest/globals';
-import { CulqiClient } from '../../src';
+import { CulqiClient } from '../../src/client/culqi-client';
 import * as httpClientModule from '../../src/client/http-client';
 
 describe('CulqiClient', () => {

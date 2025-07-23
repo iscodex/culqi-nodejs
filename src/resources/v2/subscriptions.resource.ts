@@ -1,3 +1,5 @@
+import { HttpClient } from '../../client/http-client';
+import { DeleteResponse } from '../../types/v2/common';
 import {
   SubscriptionCreateInput,
   SubscriptionCreateResponse,
@@ -5,10 +7,8 @@ import {
   SubscriptionListResponse,
   SubscriptionResponse,
   SubscriptionUpdateInput,
-} from '@src/types/v2/subscriptions';
-import { HttpClient } from '../../client/http-client';
+} from '../../types/v2/subscriptions';
 import { BaseResource } from '../base.resource';
-import { DeleteResponse } from '@src/types/v2';
 
 export class Subscriptions extends BaseResource {
   constructor(http: HttpClient, apiVersion: string) {

@@ -1,12 +1,12 @@
+import { HttpClient } from '../../client/http-client';
 import {
   OrderCreateInput,
+  OrderResponse,
   OrderListQuery,
   OrderListResponse,
-  OrderResponse,
   OrderTypeConfirmInput,
   OrderUpdateInput,
-} from '@src/types/v2/orders';
-import { HttpClient } from '../../client/http-client';
+} from '../../types/v2/orders';
 import { BaseResource } from '../base.resource';
 
 export class Orders extends BaseResource {

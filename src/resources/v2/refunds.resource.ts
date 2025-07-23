@@ -1,11 +1,11 @@
+import { HttpClient } from '../../client/http-client';
 import {
   RefundCreateInput,
+  RefundResponse,
   RefundListQuery,
   RefundListResponse,
-  RefundResponse,
   RefundUpdateInput,
-} from '@src/types/v2/refunds';
-import { HttpClient } from '../../client/http-client';
+} from '../../types/v2/refunds';
 import { BaseResource } from '../base.resource';
 
 export class Refunds extends BaseResource {
