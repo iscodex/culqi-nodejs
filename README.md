@@ -1,6 +1,6 @@
 # Culqi Node SDK (TypeScript)
 
-**Official, zero‑runtime‑dependency SDK** to integrate Culqi’s REST API in Node.js.
+**Culqi, zero‑runtime‑dependency SDK** to integrate Culqi’s REST API in Node.js.
 This scaffold targets **API v2** and is ready for future versions side‑by‑side.
 
 ## Quick start
@@ -18,14 +18,14 @@ const culqi = CulqiClient.init({
   apiVersion: '2',
 });
 
-const { id: tokenId } = await culqi.tokens.createToken({
+const { id: tokenId } = await culqi.tokens.create({
   card_number: '4111111111111111',
   cvv: '123',
   expiration_month: '07',
   expiration_year: '2027',
 });
 
-await culqi.charges.createCharge({
+await culqi.charges.create({
   amount: 1000,
   currency_code: 'PEN',
   source_id: tokenId,
@@ -51,18 +51,50 @@ await culqi.charges.createCharge({
 │  ├─ client/
 │  │   ├─ culqi-client.ts
 │  │   └─ http-client.ts
-│  ├─ resources/
-│  │   └─ v2/
-│  │       ├─ tokens.ts
-│  │       └─ charges.ts
 │  ├─ dtos/
 │  │   └─ v2/
-│  │       ├─ tokens.ts
-│  │       └─ charges.ts
-│  └─ index.ts
+│  │       ├─ common.dto.ts
+│  │       ├─ cards.dto.ts
+│  │       ├─ charges.dto.ts
+│  │       ├─ customers.dto.ts
+│  │       ├─ events.dto.ts
+│  │       ├─ orders.dto.ts
+│  │       ├─ plans.dto.ts
+│  │       ├─ refunds.dto.ts
+│  │       ├─ subscriptions.dto.ts
+│  │       └─ tokens.dto.ts
+│  ├─ resources/
+│  │   ├─ v2/
+│  │   │   ├─ cards.resource.ts
+│  │   │   ├─ charges.resource.ts
+│  │   │   ├─ customers.resource.ts
+│  │   │   ├─ events.resource.ts
+│  │   │   ├─ orders.resource.ts
+│  │   │   ├─ plans.resource.ts
+│  │   │   ├─ refunds.resource.ts
+│  │   │   ├─ subscriptions.resource.ts
+│  │   │   └─ tokens.resource.ts
+│  │   ├─ base.resource.ts
+│  ├─ utils/
+│  │   └─ resource-factory.ts
+│  ├─ index.ts
+│  └─ types.ts
 ├─ tests/
-│  └─ culqi-client.test.ts
-└─ …
+│  ├─ client/
+│  │   ├─ culqi-client.test.ts
+│  │   └─ http-client.test.ts
+│  └─ resources/
+│      └─ v2/
+│          ├─ cards.resource.test.ts
+│          ├─ charges.resource.test.ts
+│          ├─ customer.resource.test.ts
+│          ├─ events.resource.test.ts
+│          ├─ orders.resource.test.ts
+│          ├─ plans.resource.test.ts
+│          ├─ refunds.resource.test.ts
+│          ├─ subscriptions.resource.test.ts
+│          └─ tokens.resource.test.ts
+└─ ...
 ```
 
 ---
