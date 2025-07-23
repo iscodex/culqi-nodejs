@@ -23,6 +23,7 @@ export default [
       globals: {
         // Let ESLint know fetch is available (Node >= 18)
         fetch: 'readonly',
+        console: 'readonly',
       },
     },
     plugins: {

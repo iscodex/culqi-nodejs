@@ -26,16 +26,16 @@ export class CulqiClient<V extends CulqiVersion = '2'> {
 
   private constructor(private readonly opts: CulqiOptions<V>) {
     const http = new HttpClient(opts);
-    const resources = buildResources(opts.apiVersion, http);
-    this.tokens = resources.tokens;
-    this.charges = resources.charges;
-    this.refunds = resources.refunds;
-    this.customers = resources.customers;
-    this.cards = resources.cards;
-    this.plans = resources.plans;
-    this.subscriptions = resources.subscriptions;
-    this.orders = resources.orders;
-    this.events = resources.events;
+    const r = buildResources(opts.apiVersion, http);
+    this.tokens = r.tokens;
+    this.charges = r.charges;
+    this.refunds = r.refunds;
+    this.customers = r.customers;
+    this.cards = r.cards;
+    this.plans = r.plans;
+    this.subscriptions = r.subscriptions;
+    this.orders = r.orders;
+    this.events = r.events;
   }
 
   /** Fluent initializer with sensible defaults. */
