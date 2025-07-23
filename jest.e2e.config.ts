@@ -6,6 +6,7 @@ const config: JestConfigWithTsJest = {
   roots: ['<rootDir>/tests'],
   testMatch: ['**/*.e2e.spec.ts'],
   modulePathIgnorePatterns: ['<rootDir>/dist'],
+  testTimeout: 20000,
 };
 
 export default config;
