@@ -8,8 +8,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
-    "test": "jest --coverage",
+    "build": "rm -rf dist && tsc -p tsconfig.build.json",
+    "test": "jest",
     "lint": "eslint --ext .ts src tests",
     "format": "prettier --write ."
   },
