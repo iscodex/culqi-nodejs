@@ -6,7 +6,7 @@ import {
   CardListResponse,
   CardUpdateInput,
 } from '../../types/v2/cards';
-import { NoAuthResponse, DeleteResponse } from '../../types/v2/common';
+import { DeleteResponse } from '../../types/v2/common';
 import { BaseResource } from '../base.resource';
 
 /**
@@ -34,7 +34,7 @@ export class Cards extends BaseResource {
    * @see {@link https://github.com/iscodex/culqi-nodejs/blob/main/src/examples/cards/find-by.ts Usage Example}
    * */
   findBy(params?: CardListQuery) {
-    return this.get<NoAuthResponse | CardListResponse>(undefined, { params });
+    return this.get<CardListResponse>(undefined, { params });
   }
 
   /**

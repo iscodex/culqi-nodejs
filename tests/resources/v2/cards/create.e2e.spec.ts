@@ -35,14 +35,12 @@ describe('E2E Card, create', () => {
     });
 
     expect(card.customer_id).toBe(customer.id);
-    expect(card).toHaveProperty('active', true);
+    expect(card.active).toBe(true);
 
     const removeCard = await sdk.cards.remove(card.id);
-
-    expect(removeCard).toHaveProperty('deleted', true);
+    expect(removeCard.deleted).toBe(true);
 
     const removeCustomer = await sdk.customers.remove(customer.id);
-
-    expect(removeCustomer).toHaveProperty('deleted', true);
+    expect(removeCustomer.deleted).toBe(true);
   });
 });
