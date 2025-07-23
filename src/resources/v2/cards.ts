@@ -8,7 +8,7 @@ import {
   CardResponse,
   CardUpdateDto,
 } from '../../dtos/v2/cards';
-import { BaseResource } from '../base-resource';
+import { BaseResource } from '../base.resource';
 
 export class Cards extends BaseResource {
   constructor(http: HttpClient, apiVersion: string) {

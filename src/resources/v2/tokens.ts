@@ -7,7 +7,7 @@ import type {
   TokenResponse,
   TokenUpdateDto,
 } from '../../dtos/v2/tokens';
-import { BaseResource } from '../base-resource';
+import { BaseResource } from '../base.resource';
 
 /** Token endpoints for API v2 */
 export class Tokens extends BaseResource {

@@ -8,7 +8,7 @@ import {
   SubscriptionResponse,
   SubscriptionUpdateDto,
 } from '../../dtos/v2/subscriptions';
-import { BaseResource } from '../base-resource';
+import { BaseResource } from '../base.resource';
 
 export class Subscriptions extends BaseResource {
   constructor(http: HttpClient, apiVersion: string) {

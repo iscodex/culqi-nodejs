@@ -7,7 +7,7 @@ import type {
   ChargeResponse,
   ChargeUpdateDto,
 } from '../../dtos/v2/charges';
-import { BaseResource } from '../base-resource';
+import { BaseResource } from '../base.resource';
 
 /** Charge endpoints for API v2 */
 export class Charges extends BaseResource {

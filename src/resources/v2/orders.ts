@@ -7,7 +7,7 @@ import {
   OrderListResponse,
   OrderResponse,
 } from '../../dtos/v2/orders';
-import { BaseResource } from '../base-resource';
+import { BaseResource } from '../base.resource';
 
 export class Orders extends BaseResource {
   constructor(http: HttpClient, apiVersion: string) {

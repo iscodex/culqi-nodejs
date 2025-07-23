@@ -6,3 +6,4 @@ export { Cards } from './cards';
 export { Plans } from './plans';
 export { Subscriptions } from './subscriptions';
 export { Orders } from './orders';
+export { Events } from './events';

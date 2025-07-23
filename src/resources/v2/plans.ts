@@ -8,7 +8,7 @@ import {
   PlanCreateResponse,
   PlanUpdateDto,
 } from '../../dtos/v2/plans';
-import { BaseResource } from '../base-resource';
+import { BaseResource } from '../base.resource';
 
 export class Plans extends BaseResource {
   constructor(http: HttpClient, apiVersion: string) {

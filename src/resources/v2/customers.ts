@@ -7,7 +7,7 @@ import {
   CustomerResponse,
   CustomerUpdateDto,
 } from '../../dtos/v2/customers';
-import { BaseResource } from '../base-resource';
+import { BaseResource } from '../base.resource';
 
 export class Customers extends BaseResource {
   constructor(http: HttpClient, apiVersion: string) {

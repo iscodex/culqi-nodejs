@@ -6,7 +6,7 @@ import {
   RefundResponse,
   RefundUpdateDto,
 } from '../../dtos/v2/refunds';
-import { BaseResource } from '../base-resource';
+import { BaseResource } from '../base.resource';
 
 export class Refunds extends BaseResource {
   constructor(http: HttpClient, apiVersion: string) {
