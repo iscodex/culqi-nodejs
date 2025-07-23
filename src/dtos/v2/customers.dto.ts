@@ -3,8 +3,7 @@
  * Docs: https://apidocs.culqi.com/#tag/Clientes
  */
 
-import { AntifraudDetails } from './charges';
-import { Paging } from './tokens';
+import { AntifraudDetails, Paging } from './common.dto';
 
 /* -------------------------------------------------------------------------- */
 /*                                 Requests                                   */
@@ -48,9 +47,7 @@ export interface CustomerCancelResponse {
 
 export interface CustomerListResponse {
   data: CustomerResponse[];
-  paging: Paging & {
-    remaining_items?: number;
-  };
+  paging: Paging;
 }
 
 export interface CustomerListQuery extends Record<string, unknown> {

@@ -3,7 +3,7 @@
  * Docs: https://apidocs.culqi.com/#tag/Planes
  */
 
-import { Paging } from './tokens';
+import { Paging } from './common.dto';
 
 /* -------------------------------------------------------------------------- */
 /*                                 Requests                                   */
@@ -79,9 +79,7 @@ export interface PlanListResponse {
     PlanResponse,
     'interval_unit_time' | 'interval_count' | 'initial_cycles' | 'image' | 'slug'
   >[];
-  paging: Paging & {
-    remaining_items?: number;
-  };
+  paging: Paging;
 }
 
 export interface PlanListQuery extends Record<string, unknown> {

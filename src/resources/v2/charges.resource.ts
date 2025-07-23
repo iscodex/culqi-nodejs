@@ -6,7 +6,7 @@ import type {
   ChargePendingResponse,
   ChargeResponse,
   ChargeUpdateDto,
-} from '../../dtos/v2/charges';
+} from '../../dtos/v2/charges.dto';
 import { BaseResource } from '../base.resource';
 
 /** Charge endpoints for API v2 */

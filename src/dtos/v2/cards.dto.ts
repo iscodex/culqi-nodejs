@@ -3,8 +3,8 @@
  * Docs: https://apidocs.culqi.com/#tag/Tarjetas
  */
 
-import { Authentication3DS } from './charges';
-import { Paging, TokenResponse } from './tokens';
+import { Authentication3DS, Paging } from './common.dto';
+import { TokenResponse } from './tokens.dto';
 
 /* -------------------------------------------------------------------------- */
 /*                                 Requests                                   */
@@ -52,9 +52,7 @@ export interface CardCancelResponse {
 
 export interface CardListResponse {
   data: CardResponse[];
-  paging: Paging & {
-    remaining_items?: number;
-  };
+  paging: Paging;
 }
 
 export interface CardListQuery extends Record<string, unknown> {

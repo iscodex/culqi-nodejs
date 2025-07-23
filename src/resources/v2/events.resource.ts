@@ -1,5 +1,5 @@
 import { HttpClient } from '../../client/http-client';
-import { EventListQuery, EventListResponse, EventResponse } from '../../dtos/v2/events';
+import { EventListQuery, EventListResponse, EventResponse } from '../../dtos/v2/events.dto';
 import { BaseResource } from '../base.resource';
 
 export class Events extends BaseResource {

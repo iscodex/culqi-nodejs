@@ -1,12 +1,12 @@
-import { Tokens as TokensV2 } from './resources/v2/tokens';
-import { Charges as ChargesV2 } from './resources/v2/charges';
-import { Refunds as RefundsV2 } from './resources/v2/refunds';
-import { Customers as CustomersV2 } from './resources/v2/customers';
-import { Cards as CardsV2 } from './resources/v2/cards';
-import { Plans as PlansV2 } from './resources/v2/plans';
-import { Subscriptions as SubscriptionsV2 } from './resources/v2/subscriptions';
-import { Orders as OrdersV2 } from './resources/v2/orders';
-import { Events as EventsV2 } from './resources/v2/events';
+import { Tokens as TokensV2 } from './resources/v2/tokens.resource';
+import { Charges as ChargesV2 } from './resources/v2/charges.resource';
+import { Refunds as RefundsV2 } from './resources/v2/refunds.resource';
+import { Customers as CustomersV2 } from './resources/v2/customers.resource';
+import { Cards as CardsV2 } from './resources/v2/cards.resource';
+import { Plans as PlansV2 } from './resources/v2/plans.resource';
+import { Subscriptions as SubscriptionsV2 } from './resources/v2/subscriptions.resource';
+import { Orders as OrdersV2 } from './resources/v2/orders.resource';
+import { Events as EventsV2 } from './resources/v2/events.resource';
 
 // import { Tokens as TokensV3 } from './resources/v3/tokens';
 

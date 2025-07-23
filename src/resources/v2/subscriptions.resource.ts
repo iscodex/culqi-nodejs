@@ -7,7 +7,7 @@ import {
   SubscriptionListResponse,
   SubscriptionResponse,
   SubscriptionUpdateDto,
-} from '../../dtos/v2/subscriptions';
+} from '../../dtos/v2/subscriptions.dto';
 import { BaseResource } from '../base.resource';
 
 export class Subscriptions extends BaseResource {

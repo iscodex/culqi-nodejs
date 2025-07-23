@@ -3,28 +3,12 @@
  * Docs: https://apidocs.culqi.com/#tag/Cargos
  */
 
-import { Paging, TokenResponse } from './tokens';
+import { AntifraudDetails, Authentication3DS, FeeDetails, Paging } from './common.dto';
+import { TokenResponse } from './tokens.dto';
 
 /* -------------------------------------------------------------------------- */
 /*                                 Requests                                   */
 /* -------------------------------------------------------------------------- */
-
-export interface AntifraudDetails {
-  address?: string;
-  address_city?: string;
-  country_code?: string; // ISO‑3166‑1 alpha‑2
-  first_name?: string;
-  last_name?: string;
-  phone_number?: string;
-}
-
-export interface Authentication3DS {
-  xid?: string;
-  cavv?: string;
-  directoryServerTransactionId?: string;
-  eci?: string;
-  protocolVersion?: string;
-}
 
 export interface ChargeCreateDto {
   /** Amount integer (100-999900, no decimal point) */
@@ -65,17 +49,6 @@ export interface OutcomeInfo {
   code: string;
   merchant_message: string;
   user_message: string;
-}
-
-export interface VariableFeeDetail {
-  currency_code: 'PEN' | 'USD';
-  commision?: number;
-  total: number;
-}
-
-export interface FeeDetails {
-  fixed_fee: Record<string, unknown>;
-  variable_fee: VariableFeeDetail;
 }
 
 export interface ChargePendingResponse {
@@ -120,9 +93,7 @@ export interface ChargeResponse {
 
 export interface ChargeListResponse {
   data: ChargeResponse[];
-  paging: Paging & {
-    remaining_items?: number;
-  };
+  paging: Paging;
 }
 
 export interface ChargeListQuery extends Record<string, unknown> {

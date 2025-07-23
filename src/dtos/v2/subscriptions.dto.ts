@@ -3,7 +3,7 @@
  * Docs: https://apidocs.culqi.com/#tag/Suscripciones
  */
 
-import { Paging } from './tokens';
+import { Paging } from './common.dto';
 
 /* -------------------------------------------------------------------------- */
 /*                               Common pieces                                */
@@ -121,7 +121,5 @@ export interface SubscriptionListItem {
 
 export interface SubscriptionListResponse {
   data: SubscriptionListItem[];
-  paging: Paging & {
-    remaining_items?: number;
-  };
+  paging: Paging;
 }

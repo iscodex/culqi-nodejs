@@ -1,12 +1,12 @@
 import { HttpClient } from '../../client/http-client';
-import { CardUpdateDto } from '../../dtos/v2/cards';
 import {
   OrderTypeConfirmDto,
   OrderCreateDto,
   OrderListQuery,
   OrderListResponse,
   OrderResponse,
-} from '../../dtos/v2/orders';
+  OrderUpdateDto,
+} from '../../dtos/v2/orders.dto';
 import { BaseResource } from '../base.resource';
 
 export class Orders extends BaseResource {
@@ -40,7 +40,7 @@ export class Orders extends BaseResource {
   }
 
   /** Partial update a order by its id */
-  update(id: string, data: CardUpdateDto) {
+  update(id: string, data: OrderUpdateDto) {
     return this.patch<OrderResponse>(`/${id}`, { data });
   }
 

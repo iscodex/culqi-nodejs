@@ -7,7 +7,7 @@ import {
   CardPendingResponse,
   CardResponse,
   CardUpdateDto,
-} from '../../dtos/v2/cards';
+} from '../../dtos/v2/cards.dto';
 import { BaseResource } from '../base.resource';
 
 export class Cards extends BaseResource {

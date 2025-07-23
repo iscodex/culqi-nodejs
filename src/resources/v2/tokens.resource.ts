@@ -6,7 +6,7 @@ import type {
   TokenListResponse,
   TokenResponse,
   TokenUpdateDto,
-} from '../../dtos/v2/tokens';
+} from '../../dtos/v2/tokens.dto';
 import { BaseResource } from '../base.resource';
 
 /** Token endpoints for API v2 */

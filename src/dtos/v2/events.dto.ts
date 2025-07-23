@@ -3,7 +3,7 @@
  * Docs: https://apidocs.culqi.com/#tag/Eventos
  */
 
-import { Paging } from './tokens';
+import { Paging } from './common.dto';
 
 /* -------------------------------------------------------------------------- */
 /*                                  Responses                                 */
@@ -19,9 +19,7 @@ export interface EventResponse {
 
 export interface EventListResponse {
   data: EventResponse[];
-  paging: Paging & {
-    remaining_items?: number;
-  };
+  paging: Paging;
 }
 
 export interface EventListQuery extends Record<string, unknown> {

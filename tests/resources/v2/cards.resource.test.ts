@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, jest } from '@jest/globals';
-import { Cards } from '../../../src/resources/v2/cards';
+import { Cards } from '../../../src/resources/v2/cards.resource';
 
 describe('Cards resource (v2)', () => {
   let http: any;

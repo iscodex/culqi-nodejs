@@ -7,7 +7,7 @@ import {
   PlanResponse,
   PlanCreateResponse,
   PlanUpdateDto,
-} from '../../dtos/v2/plans';
+} from '../../dtos/v2/plans.dto';
 import { BaseResource } from '../base.resource';
 
 export class Plans extends BaseResource {

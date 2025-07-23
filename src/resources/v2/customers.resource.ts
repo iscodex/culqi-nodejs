@@ -6,7 +6,7 @@ import {
   CustomerListResponse,
   CustomerResponse,
   CustomerUpdateDto,
-} from '../../dtos/v2/customers';
+} from '../../dtos/v2/customers.dto';
 import { BaseResource } from '../base.resource';
 
 export class Customers extends BaseResource {

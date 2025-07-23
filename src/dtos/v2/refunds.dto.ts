@@ -3,7 +3,7 @@
  * Docs: https://apidocs.culqi.com/#tag/Devoluciones
  */
 
-import { Paging } from './tokens';
+import { Paging } from './common.dto';
 
 /* -------------------------------------------------------------------------- */
 /*                                 Requests                                   */
@@ -39,9 +39,7 @@ export interface RefundResponse {
 
 export interface RefundListResponse {
   data: RefundResponse[];
-  paging: Paging & {
-    remaining_items?: number;
-  };
+  paging: Paging;
 }
 
 export interface RefundListQuery extends Record<string, unknown> {

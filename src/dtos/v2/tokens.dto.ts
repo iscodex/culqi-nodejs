@@ -3,6 +3,8 @@
  * Docs: https://apidocs.culqi.com/#tag/Tokens
  */
 
+import { Paging } from './common.dto';
+
 /* -------------------------------------------------------------------------- */
 /*                                 Requests                                   */
 /* -------------------------------------------------------------------------- */
@@ -87,17 +89,6 @@ export interface TokenResponse {
 }
 
 /* ------------------------------ List helpers ------------------------------ */
-
-export interface PagingCursors {
-  before?: string;
-  after?: string;
-}
-
-export interface Paging {
-  previous?: string;
-  next?: string;
-  cursors: PagingCursors;
-}
 
 export interface TokenListResponse {
   data: TokenResponse[];

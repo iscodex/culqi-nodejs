@@ -3,8 +3,7 @@
  * Docs: https://apidocs.culqi.com/#tag/Ordenes
  */
 
-import { FeeDetails } from './charges';
-import { Paging } from './tokens';
+import { FeeDetails, Paging } from './common.dto';
 
 /* -------------------------------------------------------------------------- */
 /*                                 Requests                                   */
@@ -69,9 +68,7 @@ export interface OrderResponse {
 
 export interface OrderListResponse {
   data: OrderResponse[];
-  paging: Paging & {
-    remaining_items?: number;
-  };
+  paging: Paging;
 }
 
 export interface OrderListQuery extends Record<string, unknown> {

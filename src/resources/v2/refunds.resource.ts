@@ -5,7 +5,7 @@ import {
   RefundListResponse,
   RefundResponse,
   RefundUpdateDto,
-} from '../../dtos/v2/refunds';
+} from '../../dtos/v2/refunds.dto';
 import { BaseResource } from '../base.resource';
 
 export class Refunds extends BaseResource {
