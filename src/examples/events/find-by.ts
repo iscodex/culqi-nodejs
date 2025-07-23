@@ -6,10 +6,4 @@ const culqi = CulqiClient.init({
   apiVersion: '2',
 });
 
-culqi.customers
-  .findBy({
-    email: 'janedoe@domain.com',
-    country_code: 'US',
-  })
-  .then(console.log)
-  .catch(console.error);
+culqi.events.findBy({ type: 'charge.creation.succeeded' }).then(console.log).catch(console.error);

@@ -9,42 +9,74 @@ import {
 } from '../../types/v2/orders';
 import { BaseResource } from '../base.resource';
 
+/**
+ * Orders endpoints for API v2
+ *
+ * @see {@link https://apidocs.culqi.com/#tag/Ordenes Documentation}.
+ * */
 export class Orders extends BaseResource {
   constructor(http: HttpClient, apiVersion: string) {
     super(http, `/v${apiVersion}/orders`);
   }
 
-  /** Create a order */
+  /**
+   * Create order
+   *
+   * @see {@link https://github.com/iscodex/culqi-nodejs/blob/main/src/examples/orders/create.ts Usage Example}
+   * */
   create(data: OrderCreateInput) {
     return this.post<OrderResponse>(undefined, { data });
   }
 
-  /** List orders with optional filters */
+  /**
+   * List orders
+   *
+   * @see {@link https://github.com/iscodex/culqi-nodejs/blob/main/src/examples/orders/find-by.ts Usage Example}
+   * */
   findBy(params?: OrderListQuery) {
     return this.get<OrderListResponse>(undefined, { params });
   }
 
-  /** Confirm a order */
+  /**
+   * Confirm order
+   *
+   * @see {@link https://github.com/iscodex/culqi-nodejs/blob/main/src/examples/orders/confirm.ts Usage Example}
+   * */
   confirm(id: string) {
     return this.post<OrderResponse>(`/${id}/confirm`, { pub: true });
   }
 
-  /** Confirm a order type */
+  /**
+   * Confirm order type
+   *
+   * @see {@link https://github.com/iscodex/culqi-nodejs/blob/main/src/examples/orders/confirm-with-type.ts Usage Example}
+   * */
   confirmWithType(data: OrderTypeConfirmInput) {
     return this.post<OrderResponse>(`/confirm`, { data, pub: true });
   }
-
-  /** Retrieve a single order by its id */
+  /**
+   * Get order
+   *
+   * @see {@link https://github.com/iscodex/culqi-nodejs/blob/main/src/examples/orders/find.ts Usage Example}
+   * */
   find(id: string) {
     return this.get<OrderResponse>(`/${id}`);
   }
 
-  /** Partial update a order by its id */
+  /**
+   * Update order
+   *
+   * @see {@link https://github.com/iscodex/culqi-nodejs/blob/main/src/examples/orders/update.ts Usage Example}
+   * */
   update(id: string, data: OrderUpdateInput) {
     return this.patch<OrderResponse>(`/${id}`, { data });
   }
 
-  /** Delete a single order by its id */
+  /**
+   * Delete order
+   *
+   * @see {@link https://github.com/iscodex/culqi-nodejs/blob/main/src/examples/orders/remove.ts Usage Example}
+   * */
   remove(id: string) {
     return this.del<OrderResponse>(`/${id}`);
   }

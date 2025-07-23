@@ -6,10 +6,7 @@ const culqi = CulqiClient.init({
   apiVersion: '2',
 });
 
-culqi.customers
-  .findBy({
-    email: 'janedoe@domain.com',
-    country_code: 'US',
-  })
+culqi.orders
+  .confirmWithType({ id: 'ord_123', order_types: ['cuotealo', 'cip'] })
   .then(console.log)
   .catch(console.error);

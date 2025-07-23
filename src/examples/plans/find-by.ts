@@ -6,10 +6,10 @@ const culqi = CulqiClient.init({
   apiVersion: '2',
 });
 
-culqi.customers
+culqi.plans
   .findBy({
-    email: 'janedoe@domain.com',
-    country_code: 'US',
+    status: 1,
+    creation_date_to: 1671720949000,
   })
   .then(console.log)
   .catch(console.error);

@@ -6,10 +6,12 @@ const culqi = CulqiClient.init({
   apiVersion: '2',
 });
 
-culqi.customers
-  .findBy({
-    email: 'janedoe@domain.com',
-    country_code: 'US',
+culqi.orders
+  .update('ord_123', {
+    expiration_date: 1661117022,
+    metadata: {
+      client_id: 'f8be7382-c778-4420-a705-7545089f2b8c',
+    },
   })
   .then(console.log)
   .catch(console.error);

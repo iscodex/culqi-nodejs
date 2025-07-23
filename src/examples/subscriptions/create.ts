@@ -6,15 +6,11 @@ const culqi = CulqiClient.init({
   apiVersion: '2',
 });
 
-culqi.customers
+culqi.subscriptions
   .create({
-    first_name: 'Jane',
-    last_name: 'Doe',
-    email: 'janedoe@domain.com',
-    address: '2380 Lewis Street',
-    address_city: 'Hickory Hills',
-    country_code: 'US',
-    phone_number: '6505434800',
+    card_id: 'crd_123',
+    plan_id: 'pln_123',
+    tyc: true,
   })
   .then(console.log)
   .catch(console.error);

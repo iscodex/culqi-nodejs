@@ -67,12 +67,12 @@ export type OrderListResponse = {
 };
 
 export type OrderListQuery = {
-  amount?: string;
-  min_amount?: string;
-  max_amount?: string;
-  creation_date?: string;
-  creation_date_from?: string;
-  creation_date_to?: string;
+  amount?: number;
+  min_amount?: number;
+  max_amount?: number;
+  creation_date?: number;
+  creation_date_from?: number;
+  creation_date_to?: number;
   state?: 'created' | 'pending';
   limit?: string;
   before?: string;

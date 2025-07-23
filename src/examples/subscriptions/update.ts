@@ -6,10 +6,12 @@ const culqi = CulqiClient.init({
   apiVersion: '2',
 });
 
-culqi.customers
-  .findBy({
-    email: 'janedoe@domain.com',
-    country_code: 'US',
+culqi.subscriptions
+  .update('sxn_123', {
+    card_id: 'crd_123',
+    metadata: {
+      client_id: 'f8be7382-c778-4420-a705-7545089f2b8c',
+    },
   })
   .then(console.log)
   .catch(console.error);
