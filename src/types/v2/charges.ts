@@ -1,16 +1,11 @@
-/**
- * Data Transfer Objects for Charge endpoints (API v2)
- * Docs: https://apidocs.culqi.com/#tag/Cargos
- */
-
-import { AntifraudDetails, Authentication3DS, FeeDetails, Paging } from './common.dto';
-import { TokenResponse } from './tokens.dto';
+import { AntifraudDetails, Authentication3DS, FeeDetails, Paging } from './common';
+import { TokenResponse } from './tokens';
 
 /* -------------------------------------------------------------------------- */
 /*                                 Requests                                   */
 /* -------------------------------------------------------------------------- */
 
-export interface ChargeCreateDto {
+export type ChargeCreateInput = {
   /** Amount integer (100-999900, no decimal point) */
   amount: number;
   /** Currency code ISO 4217 (PEN | USD)  */
@@ -34,29 +29,29 @@ export interface ChargeCreateDto {
   antifraud_details?: AntifraudDetails;
   /** Optional params 3DS */
   authentication_3DS?: Authentication3DS;
-}
+};
 
-export interface ChargeUpdateDto {
+export type ChargeUpdateInput = {
   metadata: Record<string, unknown>;
-}
+};
 
 /* -------------------------------------------------------------------------- */
 /*                                  Responses                                 */
 /* -------------------------------------------------------------------------- */
 
-export interface OutcomeInfo {
+export type OutcomeInfo = {
   type: string;
   code: string;
   merchant_message: string;
   user_message: string;
-}
+};
 
-export interface ChargePendingResponse {
+export type ChargePendingResponse = {
   user_message: string;
   action_code: string;
-}
+};
 
-export interface ChargeResponse {
+export type ChargeResponse = {
   object: 'charge';
   id: string;
   creation_date: number;
@@ -87,16 +82,16 @@ export interface ChargeResponse {
   statement_descriptor: string;
   transfer_id: string | null;
   operations?: unknown[];
-}
+};
 
 /* ------------------------------ List helpers ------------------------------ */
 
-export interface ChargeListResponse {
+export type ChargeListResponse = {
   data: ChargeResponse[];
   paging: Paging;
-}
+};
 
-export interface ChargeListQuery extends Record<string, unknown> {
+export type ChargeListQuery = {
   amount?: string;
   min_amount?: string;
   max_amount?: string;
@@ -129,4 +124,4 @@ export interface ChargeListQuery extends Record<string, unknown> {
   limit?: string;
   before?: string;
   after?: string;
-}
+};

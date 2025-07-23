@@ -1,38 +1,28 @@
-/**
- * Data Transfer Objects for Card endpoints (API v2)
- * Docs: https://apidocs.culqi.com/#tag/Tarjetas
- */
-
-import { Authentication3DS, Paging } from './common.dto';
-import { TokenResponse } from './tokens.dto';
+import { Authentication3DS, Paging } from './common';
+import { TokenResponse } from './tokens';
 
 /* -------------------------------------------------------------------------- */
 /*                                 Requests                                   */
 /* -------------------------------------------------------------------------- */
 
-export interface CardCreateDto {
+export type CardCreateInput = {
   customer_id: string;
   token_id: string;
   validate?: boolean;
   authentication_3DS?: Authentication3DS;
   metadata?: Record<string, unknown>;
-}
+};
 
-export interface CardUpdateDto {
+export type CardUpdateInput = {
   token_id?: string;
   metadata?: Record<string, unknown>;
-}
+};
 
 /* -------------------------------------------------------------------------- */
 /*                                  Responses                                 */
 /* -------------------------------------------------------------------------- */
 
-export interface CardPendingResponse {
-  user_message: string;
-  action_code: string;
-}
-
-export interface CardResponse {
+export type CardResponse = {
   object: 'card';
   id: string;
   active: boolean;
@@ -40,22 +30,16 @@ export interface CardResponse {
   customer_id: string;
   source: TokenResponse;
   metadata?: Record<string, unknown>;
-}
-
-export interface CardCancelResponse {
-  id: string;
-  deleted: boolean;
-  merchant_message: string;
-}
+};
 
 /* ------------------------------ List helpers ------------------------------ */
 
-export interface CardListResponse {
+export type CardListResponse = {
   data: CardResponse[];
   paging: Paging;
-}
+};
 
-export interface CardListQuery extends Record<string, unknown> {
+export type CardListQuery = {
   creation_date?: string;
   creation_date_from?: string;
   creation_date_to?: string;
@@ -67,4 +51,4 @@ export interface CardListQuery extends Record<string, unknown> {
   limit?: string;
   before?: string;
   after?: string;
-}
+};

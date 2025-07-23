@@ -1,13 +1,13 @@
-import type { HttpClient } from '../../client/http-client';
-import type {
-  ChargeCreateDto,
+import {
+  ChargeCreateInput,
   ChargeListQuery,
   ChargeListResponse,
-  ChargePendingResponse,
   ChargeResponse,
-  ChargeUpdateDto,
-} from '../../dtos/v2/charges.dto';
+  ChargeUpdateInput,
+} from '@src/types/v2/charges';
+import type { HttpClient } from '../../client/http-client';
 import { BaseResource } from '../base.resource';
+import { NoAuthResponse } from '@src/types/v2';
 
 /** Charge endpoints for API v2 */
 export class Charges extends BaseResource {
@@ -16,8 +16,8 @@ export class Charges extends BaseResource {
   }
 
   /** Create a charge */
-  create(data: ChargeCreateDto) {
-    return this.post<ChargePendingResponse | ChargeResponse>(undefined, { data });
+  create(data: ChargeCreateInput) {
+    return this.post<NoAuthResponse | ChargeResponse>(undefined, { data });
   }
 
   /** List charges with optional filters */
@@ -31,7 +31,7 @@ export class Charges extends BaseResource {
   }
 
   /** Partial update – currently only metadata is supported */
-  update(id: string, data: ChargeUpdateDto) {
+  update(id: string, data: ChargeUpdateInput) {
     return this.patch<ChargeResponse>(`/${id}`, { data });
   }
 

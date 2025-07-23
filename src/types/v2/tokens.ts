@@ -1,61 +1,43 @@
-/**
- * Data Transfer Objects for Token endpoints (API v2)
- * Docs: https://apidocs.culqi.com/#tag/Tokens
- */
-
-import { Paging } from './common.dto';
+import { Paging } from './common';
 
 /* -------------------------------------------------------------------------- */
 /*                                 Requests                                   */
 /* -------------------------------------------------------------------------- */
 
-/** Payload for POST /v2/tokens (create token) */
-export interface TokenCreateDto {
-  /** Card number (13‑16 digits, no spaces) */
+export type TokenCreateInput = {
   card_number: string;
-  /** CVV (3‑4 digits) */
   cvv: string;
-  /** Expiration month (1‑2 digits, zero‑padded optional) */
   expiration_month: string;
-  /** Expiration year (4 digits) */
   expiration_year: string;
-  /** Customer e‑mail (5‑50 characters) */
   email: string;
-  /** Optional metadata key/value pairs */
-  metadata?: Record<string, unknown>;
-}
 
-/** Partial update ‑ currently only metadata is allowed */
-export interface TokenUpdateDto {
-  /** Custom key/value pairs */
+  metadata?: Record<string, unknown>;
+};
+
+export type TokenUpdateInput = {
   metadata: Record<string, unknown>;
-}
+};
 
-/** Create a token via Yape */
-export interface TokenCreateYapeDto {
-  /** One‑time password sent by Yape (6 digits) */
+export type TokenCreateYapeInput = {
   otp: string;
-  /** Customer phone number (9 digits, no country code) */
   number_phone: string;
-  /** Amount in minor units (3‑5 digits, no decimal point) */
   amount: string;
-  /** Optional metadata */
   metadata?: Record<string, unknown>;
-}
+};
 
 /* -------------------------------------------------------------------------- */
 /*                                  Responses                                 */
 /* -------------------------------------------------------------------------- */
 
-export interface Issuer {
+export type Issuer = {
   name: string;
   country: string;
   country_code: string;
   website: string;
   phone_number: string;
-}
+};
 
-export interface IINInfo {
+export type IINInfo = {
   object: 'iin';
   bin: string;
   card_brand: 'Visa' | 'Mastercard' | 'Amex' | 'Diner' | string;
@@ -63,18 +45,18 @@ export interface IINInfo {
   card_category: string;
   issuer: Issuer;
   installments_allowed: number[];
-}
+};
 
-export interface ClientInfo {
+export type ClientInfo = {
   ip: string;
   ip_country: string;
   ip_country_code: string;
   browser: string;
   device_fingerprint: string;
   device_type: 'escritorio' | 'movil' | 'tablet' | string;
-}
+};
 
-export interface TokenResponse {
+export type TokenResponse = {
   object: 'token';
   id: string;
   type: string;
@@ -86,16 +68,16 @@ export interface TokenResponse {
   iin: IINInfo;
   client: ClientInfo;
   metadata?: Record<string, unknown>;
-}
+};
 
 /* ------------------------------ List helpers ------------------------------ */
 
-export interface TokenListResponse {
+export type TokenListResponse = {
   data: TokenResponse[];
   paging: Paging;
-}
+};
 
-export interface TokenListQuery extends Record<string, unknown> {
+export type TokenListQuery = {
   creation_date?: string;
   creation_date_from?: string;
   creation_date_to?: string;
@@ -104,7 +86,7 @@ export interface TokenListQuery extends Record<string, unknown> {
   device_type?: 'escritorio' | 'movil' | 'tablet';
   bin?: string;
   country_code?: string;
-  limit?: string; // 1‑100
-  before?: string; // token id
-  after?: string; // token id
-}
+  limit?: string;
+  before?: string;
+  after?: string;
+};

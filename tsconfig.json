@@ -17,7 +17,7 @@
     "paths": {
       "@src/*": ["./src/*"],
       "@client/*": ["./src/client/*"],
-      "@types/*": ["./src/dtos/*"],
+      "@typesV2/*": ["./src/types/v2/*"],
       "@resources/*": ["./src/resources/*"],
       "@utils/*": ["./src/utils/*"]
     }

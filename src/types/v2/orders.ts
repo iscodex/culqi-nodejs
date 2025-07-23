@@ -1,22 +1,17 @@
-/**
- * Data Transfer Objects for Order endpoints (API v2)
- * Docs: https://apidocs.culqi.com/#tag/Ordenes
- */
-
-import { FeeDetails, Paging } from './common.dto';
-
 /* -------------------------------------------------------------------------- */
 /*                                 Requests                                   */
 /* -------------------------------------------------------------------------- */
 
-export interface ClientDetails {
+import { FeeDetails, Paging } from './common';
+
+export type ClientDetails = {
   first_name: string;
   last_name: string;
   email: string;
   phone_number: string;
-}
+};
 
-export interface OrderCreateDto {
+export type OrderCreateInput = {
   amount: number;
   currency_code: 'PEN' | 'USD';
   description: string;
@@ -25,23 +20,23 @@ export interface OrderCreateDto {
   client_details: ClientDetails;
   confirm?: boolean;
   metadata?: Record<string, unknown>;
-}
+};
 
-export interface OrderTypeConfirmDto {
+export type OrderTypeConfirmInput = {
   id: string;
   order_types: ('cuotealo' | 'cip')[];
-}
+};
 
-export interface OrderUpdateDto {
+export type OrderUpdateInput = {
   expiration_date: number;
   metadata?: Record<string, unknown>;
-}
+};
 
 /* -------------------------------------------------------------------------- */
 /*                                  Responses                                 */
 /* -------------------------------------------------------------------------- */
 
-export interface OrderResponse {
+export type OrderResponse = {
   object: 'order';
   id: string;
   amount: number;
@@ -62,16 +57,16 @@ export interface OrderResponse {
   qr: string | null;
   cuotealo: string | null;
   url_pe: string | null;
-}
+};
 
 /* ------------------------------ List helpers ------------------------------ */
 
-export interface OrderListResponse {
+export type OrderListResponse = {
   data: OrderResponse[];
   paging: Paging;
-}
+};
 
-export interface OrderListQuery extends Record<string, unknown> {
+export type OrderListQuery = {
   amount?: string;
   min_amount?: string;
   max_amount?: string;
@@ -82,4 +77,4 @@ export interface OrderListQuery extends Record<string, unknown> {
   limit?: string;
   before?: string;
   after?: string;
-}
+};

@@ -1,12 +1,12 @@
-import type { HttpClient } from '../../client/http-client';
-import type {
-  TokenCreateDto,
-  TokenCreateYapeDto,
+import {
+  TokenCreateInput,
+  TokenCreateYapeInput,
   TokenListQuery,
   TokenListResponse,
   TokenResponse,
-  TokenUpdateDto,
-} from '../../dtos/v2/tokens.dto';
+  TokenUpdateInput,
+} from '@src/types/v2/tokens';
+import type { HttpClient } from '../../client/http-client';
 import { BaseResource } from '../base.resource';
 
 /** Token endpoints for API v2 */
@@ -16,7 +16,7 @@ export class Tokens extends BaseResource {
   }
 
   /** Create a card token (public‑key auth) */
-  create(data: TokenCreateDto) {
+  create(data: TokenCreateInput) {
     return this.post<TokenResponse>(undefined, { data, pub: true });
   }
 
@@ -31,12 +31,12 @@ export class Tokens extends BaseResource {
   }
 
   /** Partial update – currently only metadata is supported */
-  update(id: string, data: TokenUpdateDto) {
+  update(id: string, data: TokenUpdateInput) {
     return this.patch<TokenResponse>(`/${id}`, { data });
   }
 
   /** Create a Yape token (public‑key auth) */
-  createYape(data: TokenCreateYapeDto) {
+  createYape(data: TokenCreateYapeInput) {
     return this.post<TokenResponse>('/yape', { data, pub: true });
   }
 }

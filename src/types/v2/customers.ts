@@ -1,15 +1,10 @@
-/**
- * Data Transfer Objects for Customer endpoints (API v2)
- * Docs: https://apidocs.culqi.com/#tag/Clientes
- */
-
-import { AntifraudDetails, Paging } from './common.dto';
+import { AntifraudDetails, Paging } from './common';
 
 /* -------------------------------------------------------------------------- */
 /*                                 Requests                                   */
 /* -------------------------------------------------------------------------- */
 
-export interface CustomerCreateDto {
+export type CustomerCreateInput = {
   address: string;
   address_city: string;
   currency_code: 'PEN' | 'USD';
@@ -18,16 +13,15 @@ export interface CustomerCreateDto {
   last_name: string;
   phone_number: string;
   metadata?: Record<string, unknown>;
-}
+};
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-export interface CustomerUpdateDto extends Partial<Omit<CustomerCreateDto, 'email'>> {}
+export type CustomerUpdateInput = Partial<Omit<CustomerCreateInput, 'email'>>;
 
 /* -------------------------------------------------------------------------- */
 /*                                  Responses                                 */
 /* -------------------------------------------------------------------------- */
 
-export interface CustomerResponse {
+export type CustomerResponse = {
   object: 'customer';
   id: string;
   creation_date: number;
@@ -35,22 +29,22 @@ export interface CustomerResponse {
   antifraud_details: AntifraudDetails & { object: 'client' };
   cards?: unknown[];
   metadata?: Record<string, unknown>;
-}
+};
 
-export interface CustomerCancelResponse {
+export type CustomerCancelResponse = {
   id: string;
   deleted: boolean;
   merchant_message: string;
-}
+};
 
 /* ------------------------------ List helpers ------------------------------ */
 
-export interface CustomerListResponse {
+export type CustomerListResponse = {
   data: CustomerResponse[];
   paging: Paging;
-}
+};
 
-export interface CustomerListQuery extends Record<string, unknown> {
+export type CustomerListQuery = {
   first_name?: string;
   last_name?: string;
   email?: string;
@@ -61,4 +55,4 @@ export interface CustomerListQuery extends Record<string, unknown> {
   limit?: string;
   before?: string;
   after?: string;
-}
+};

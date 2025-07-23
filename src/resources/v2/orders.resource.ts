@@ -1,12 +1,12 @@
-import { HttpClient } from '../../client/http-client';
 import {
-  OrderTypeConfirmDto,
-  OrderCreateDto,
+  OrderCreateInput,
   OrderListQuery,
   OrderListResponse,
   OrderResponse,
-  OrderUpdateDto,
-} from '../../dtos/v2/orders.dto';
+  OrderTypeConfirmInput,
+  OrderUpdateInput,
+} from '@src/types/v2/orders';
+import { HttpClient } from '../../client/http-client';
 import { BaseResource } from '../base.resource';
 
 export class Orders extends BaseResource {
@@ -15,7 +15,7 @@ export class Orders extends BaseResource {
   }
 
   /** Create a order */
-  create(data: OrderCreateDto) {
+  create(data: OrderCreateInput) {
     return this.post<OrderResponse>(undefined, { data });
   }
 
@@ -30,7 +30,7 @@ export class Orders extends BaseResource {
   }
 
   /** Confirm a order type */
-  confirmWithType(data: OrderTypeConfirmDto) {
+  confirmWithType(data: OrderTypeConfirmInput) {
     return this.post<OrderResponse>(`/confirm`, { data, pub: true });
   }
 
@@ -40,7 +40,7 @@ export class Orders extends BaseResource {
   }
 
   /** Partial update a order by its id */
-  update(id: string, data: OrderUpdateDto) {
+  update(id: string, data: OrderUpdateInput) {
     return this.patch<OrderResponse>(`/${id}`, { data });
   }
 

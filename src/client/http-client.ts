@@ -1,4 +1,4 @@
-import type { CulqiOptions } from './culqi-client';
+import { CulqiOptions } from './culqi-client';
 
 // Ideally injected from package.json at build time
 const SDK_VERSION = '0.0.1';

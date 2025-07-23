@@ -1,14 +1,14 @@
-import { HttpClient } from '../../client/http-client';
 import {
-  SubscriptionCancelResponse,
-  SubscriptionCreateDto,
+  SubscriptionCreateInput,
   SubscriptionCreateResponse,
   SubscriptionListQuery,
   SubscriptionListResponse,
   SubscriptionResponse,
-  SubscriptionUpdateDto,
-} from '../../dtos/v2/subscriptions.dto';
+  SubscriptionUpdateInput,
+} from '@src/types/v2/subscriptions';
+import { HttpClient } from '../../client/http-client';
 import { BaseResource } from '../base.resource';
+import { DeleteResponse } from '@src/types/v2';
 
 export class Subscriptions extends BaseResource {
   constructor(http: HttpClient, apiVersion: string) {
@@ -16,7 +16,7 @@ export class Subscriptions extends BaseResource {
   }
 
   /** Create a subscription */
-  create(data: SubscriptionCreateDto) {
+  create(data: SubscriptionCreateInput) {
     return this.post<SubscriptionCreateResponse>('/create', { data });
   }
 
@@ -31,12 +31,12 @@ export class Subscriptions extends BaseResource {
   }
 
   /** Partial update a subscription by its id */
-  update(id: string, data: SubscriptionUpdateDto) {
+  update(id: string, data: SubscriptionUpdateInput) {
     return this.patch<SubscriptionResponse>(`/${id}`, { data });
   }
 
   /** Delete a single subscription by its id */
   remove(id: string) {
-    return this.del<SubscriptionCancelResponse>(`/${id}`);
+    return this.del<DeleteResponse>(`/${id}`);
   }
 }

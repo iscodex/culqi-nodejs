@@ -1,28 +1,23 @@
-/**
- * Data Transfer Objects for Event endpoints (API v2)
- * Docs: https://apidocs.culqi.com/#tag/Eventos
- */
-
-import { Paging } from './common.dto';
+import { Paging } from './common';
 
 /* -------------------------------------------------------------------------- */
 /*                                  Responses                                 */
 /* -------------------------------------------------------------------------- */
 
-export interface EventResponse {
+export type EventResponse = {
   object: 'event';
   type: string;
   data: unknown;
-}
+};
 
 /* ------------------------------ List helpers ------------------------------ */
 
-export interface EventListResponse {
+export type EventListResponse = {
   data: EventResponse[];
   paging: Paging;
-}
+};
 
-export interface EventListQuery extends Record<string, unknown> {
+export type EventListQuery = {
   type?: string;
   creation_date?: string;
   creation_date_from?: string;
@@ -30,4 +25,4 @@ export interface EventListQuery extends Record<string, unknown> {
   limit?: string;
   before?: string;
   after?: string;
-}
+};

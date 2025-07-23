@@ -38,7 +38,7 @@ export default [
 
   // Relax rules for generated DTOs and tests
   {
-    files: ['src/dtos/**', 'tests/**'],
+    files: ['src/types/**', 'tests/**'],
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
     },

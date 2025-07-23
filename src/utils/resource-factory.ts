@@ -1,7 +1,8 @@
-import { HttpClient } from '../client/http-client';
-import * as V2 from '../resources/v2';
+import { CulqiVersion, ResourceMap } from '@src/type';
+import { HttpClient } from '@client/http-client';
+import * as V2 from '@resources/v2';
+
 // import * as V3 from '../resources/v3';
-import type { CulqiVersion, ResourceMap } from '../types';
 
 /**
  * Returns an object with the appropriate resources for the given API version.
@@ -23,11 +24,6 @@ export function buildResources<V extends CulqiVersion>(
         orders: new V2.Orders(http, version),
         events: new V2.Events(http, version),
       } as ResourceMap<V>;
-    // case '3':
-    //   return {
-    //     tokens: new V3.Tokens(http, version),
-    //   } as ResourceMap<V>;
-    /* istanbul ignore next */
     default:
       throw new Error(`Unsupported API version: ${version}`);
   }

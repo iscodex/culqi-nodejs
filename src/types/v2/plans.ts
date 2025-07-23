@@ -1,22 +1,17 @@
-/**
- * Data Transfer Objects for Plan endpoints (API v2)
- * Docs: https://apidocs.culqi.com/#tag/Planes
- */
-
-import { Paging } from './common.dto';
+import { Paging } from './common';
 
 /* -------------------------------------------------------------------------- */
 /*                                 Requests                                   */
 /* -------------------------------------------------------------------------- */
 
-export interface InitialCycles {
+export type InitialCycles = {
   count: number;
   has_initial_charge: boolean;
   amount: number;
   interval_unit_time: 1 | 2 | 3 | 4 | 5 | 6;
-}
+};
 
-export interface PlanCreateDto {
+export type PlanCreateInput = {
   name: string;
   short_name: string;
   description: string;
@@ -27,27 +22,27 @@ export interface PlanCreateDto {
   initial_cycles: InitialCycles;
   image?: string;
   metadata?: Record<string, unknown>;
-}
+};
 
-export interface PlanUpdateDto {
+export type PlanUpdateInput = {
   name?: string;
   short_name?: string;
   description?: string;
   status?: 1 | 2;
   image?: string;
   metadata?: Record<string, unknown>;
-}
+};
 
 /* -------------------------------------------------------------------------- */
 /*                                  Responses                                 */
 /* -------------------------------------------------------------------------- */
 
-export interface PlanCreateResponse {
+export type PlanCreateResponse = {
   id: string;
   slug: string;
-}
+};
 
-export interface PlanResponse {
+export type PlanResponse = {
   object?: 'plan';
   id: string;
   interval_unit_time: 1 | 2 | 3 | 4 | 5 | 6;
@@ -64,25 +59,19 @@ export interface PlanResponse {
   status: 1 | 2;
   creation_date: number;
   slug: string;
-}
-
-export interface PlanCancelResponse {
-  id: string;
-  deleted: boolean;
-  merchant_message: string;
-}
+};
 
 /* ------------------------------ List helpers ------------------------------ */
 
-export interface PlanListResponse {
+export type PlanListResponse = {
   data: Omit<
     PlanResponse,
     'interval_unit_time' | 'interval_count' | 'initial_cycles' | 'image' | 'slug'
   >[];
   paging: Paging;
-}
+};
 
-export interface PlanListQuery extends Record<string, unknown> {
+export type PlanListQuery = {
   amount?: number;
   status?: 1 | 2;
   min_amount?: number;
@@ -92,4 +81,4 @@ export interface PlanListQuery extends Record<string, unknown> {
   limit?: string;
   before?: string;
   after?: string;
-}
+};

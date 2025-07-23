@@ -1,11 +1,11 @@
-import { HttpClient } from '../../client/http-client';
 import {
-  RefundCreateDto,
+  RefundCreateInput,
   RefundListQuery,
   RefundListResponse,
   RefundResponse,
-  RefundUpdateDto,
-} from '../../dtos/v2/refunds.dto';
+  RefundUpdateInput,
+} from '@src/types/v2/refunds';
+import { HttpClient } from '../../client/http-client';
 import { BaseResource } from '../base.resource';
 
 export class Refunds extends BaseResource {
@@ -14,7 +14,7 @@ export class Refunds extends BaseResource {
   }
 
   /** Create a refund */
-  create(data: RefundCreateDto) {
+  create(data: RefundCreateInput) {
     return this.post<RefundResponse>(undefined, { data });
   }
 
@@ -29,7 +29,7 @@ export class Refunds extends BaseResource {
   }
 
   /** Partial update a refund by its id */
-  update(id: string, data: RefundUpdateDto) {
+  update(id: string, data: RefundUpdateInput) {
     return this.patch<RefundResponse>(`/${id}`, { data });
   }
 }

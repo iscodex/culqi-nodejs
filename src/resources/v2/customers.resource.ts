@@ -1,12 +1,13 @@
-import { HttpClient } from '../../client/http-client';
 import {
-  CustomerCreateDto,
   CustomerCancelResponse,
+  CustomerCreateInput,
   CustomerListQuery,
   CustomerListResponse,
   CustomerResponse,
-  CustomerUpdateDto,
-} from '../../dtos/v2/customers.dto';
+  CustomerUpdateInput,
+} from '@src/types/v2/customers';
+import { HttpClient } from '../../client/http-client';
+
 import { BaseResource } from '../base.resource';
 
 export class Customers extends BaseResource {
@@ -15,7 +16,7 @@ export class Customers extends BaseResource {
   }
 
   /** Create a customer */
-  create(data: CustomerCreateDto) {
+  create(data: CustomerCreateInput) {
     return this.post<CustomerResponse>(undefined, { data });
   }
 
@@ -30,7 +31,7 @@ export class Customers extends BaseResource {
   }
 
   /** Partial update a customer by its id */
-  update(id: string, data: CustomerUpdateDto) {
+  update(id: string, data: CustomerUpdateInput) {
     return this.patch<CustomerResponse>(`/${id}`, { data });
   }
 

@@ -1,29 +1,24 @@
-/**
- * Data Transfer Objects for Refund endpoints (API v2)
- * Docs: https://apidocs.culqi.com/#tag/Devoluciones
- */
-
-import { Paging } from './common.dto';
+import { Paging } from './common';
 
 /* -------------------------------------------------------------------------- */
 /*                                 Requests                                   */
 /* -------------------------------------------------------------------------- */
 
-export interface RefundCreateDto {
+export type RefundCreateInput = {
   amount: number;
   charge_id: string;
   reason: 'duplicado' | 'fraudulento' | 'solicitud_comprador';
-}
+};
 
-export interface RefundUpdateDto {
+export type RefundUpdateInput = {
   metadata?: Record<string, unknown>;
-}
+};
 
 /* -------------------------------------------------------------------------- */
 /*                                  Responses                                 */
 /* -------------------------------------------------------------------------- */
 
-export interface RefundResponse {
+export type RefundResponse = {
   object: 'refund';
   id: string;
   charge_id: string;
@@ -33,16 +28,16 @@ export interface RefundResponse {
   metadata?: Record<string, unknown>;
   status: 'pendiente' | 'rechazado' | 'completado';
   last_modified: number;
-}
+};
 
 /* ------------------------------ List helpers ------------------------------ */
 
-export interface RefundListResponse {
+export type RefundListResponse = {
   data: RefundResponse[];
   paging: Paging;
-}
+};
 
-export interface RefundListQuery extends Record<string, unknown> {
+export type RefundListQuery = {
   creation_date?: string;
   creation_date_from?: string;
   creation_date_to?: string;
@@ -53,4 +48,4 @@ export interface RefundListQuery extends Record<string, unknown> {
   limit?: string;
   before?: string;
   after?: string;
-}
+};

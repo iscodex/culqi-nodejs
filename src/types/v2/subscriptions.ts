@@ -1,29 +1,24 @@
-/**
- * Data Transfer Objects for Subscription endpoints (API v2)
- * Docs: https://apidocs.culqi.com/#tag/Suscripciones
- */
-
-import { Paging } from './common.dto';
+import { Paging } from './common';
 
 /* -------------------------------------------------------------------------- */
 /*                               Common pieces                                */
 /* -------------------------------------------------------------------------- */
 
-export interface CulqiCustomerSummary {
+export type CulqiCustomerSummary = {
   first_name: string;
   last_name: string;
   email: string;
-}
+};
 
-export interface CulqiPlanSummary {
+export type CulqiPlanSummary = {
   plan_id: string;
   name: string;
   amount: number;
   currency: 'PEN' | 'USD';
   interval_unit_time: 1 | 2 | 3 | 4 | 5 | 6;
-}
+};
 
-export interface CulqiChargeSummary {
+export type CulqiChargeSummary = {
   card_id: string;
   card_number: string;
   card_brand: 'visa' | 'mastercard' | 'american_express' | 'diners_club';
@@ -33,44 +28,44 @@ export interface CulqiChargeSummary {
   error: string | null;
   amount: number;
   currency: 'PEN' | 'USD';
-}
+};
 
-export interface CulqiPeriodInfo {
+export type CulqiPeriodInfo = {
   period: number;
   status: 1 | 2 | 3 | 4 | 5 | 6;
   charges: CulqiChargeSummary[];
-}
+};
 
 /* -------------------------------------------------------------------------- */
 /*                                 Requests                                   */
 /* -------------------------------------------------------------------------- */
 
-export interface SubscriptionCreateDto {
+export type SubscriptionCreateInput = {
   card_id: string;
   plan_id: string;
   tyc: boolean;
   metadata?: Record<string, unknown>;
-}
+};
 
-export interface SubscriptionUpdateDto {
+export type SubscriptionUpdateInput = {
   card_id?: string;
   metadata?: Record<string, unknown>;
-}
+};
 
 /* -------------------------------------------------------------------------- */
 /*                                  Responses                                 */
 /* -------------------------------------------------------------------------- */
 
-export interface SubscriptionCreateResponse {
+export type SubscriptionCreateResponse = {
   id: string;
   customer_id: string;
   plan_id: string;
   status: 1 | 2 | 3 | 4 | 5 | 6;
   created_at: number;
   metadata?: Record<string, unknown>;
-}
+};
 
-export interface SubscriptionResponse {
+export type SubscriptionResponse = {
   id: string;
   status: 1 | 2 | 3 | 4 | 5 | 6;
   creation_date: number;
@@ -83,17 +78,11 @@ export interface SubscriptionResponse {
   periods: CulqiPeriodInfo[];
   customer: CulqiCustomerSummary;
   metadata?: Record<string, unknown>;
-}
-
-export interface SubscriptionCancelResponse {
-  id: string;
-  delete: boolean;
-  merchant_message: string;
-}
+};
 
 /* ------------------------------ List helpers ------------------------------ */
 
-export interface SubscriptionListQuery extends Record<string, unknown> {
+export type SubscriptionListQuery = {
   plan_id?: string;
   status?: 1 | 2 | 3 | 4 | 5 | 6;
   creation_date_from?: number;
@@ -101,9 +90,9 @@ export interface SubscriptionListQuery extends Record<string, unknown> {
   limit?: number;
   before?: string;
   after?: string;
-}
+};
 
-export interface SubscriptionListItem {
+export type SubscriptionListItem = {
   object: 'subscription';
   id: string;
   creation_date: number;
@@ -117,9 +106,9 @@ export interface SubscriptionListItem {
   card_id: string;
   customer: CulqiCustomerSummary;
   metadata?: Record<string, unknown>;
-}
+};
 
-export interface SubscriptionListResponse {
+export type SubscriptionListResponse = {
   data: SubscriptionListItem[];
   paging: Paging;
-}
+};

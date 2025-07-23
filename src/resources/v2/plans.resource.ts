@@ -1,14 +1,14 @@
-import { HttpClient } from '../../client/http-client';
 import {
-  PlanCreateDto,
-  PlanCancelResponse,
+  PlanCreateInput,
+  PlanCreateResponse,
   PlanListQuery,
   PlanListResponse,
   PlanResponse,
-  PlanCreateResponse,
-  PlanUpdateDto,
-} from '../../dtos/v2/plans.dto';
+  PlanUpdateInput,
+} from '@src/types/v2/plans';
+import { HttpClient } from '../../client/http-client';
 import { BaseResource } from '../base.resource';
+import { DeleteResponse } from '@src/types/v2';
 
 export class Plans extends BaseResource {
   constructor(http: HttpClient, apiVersion: string) {
@@ -16,7 +16,7 @@ export class Plans extends BaseResource {
   }
 
   /** Create a plan */
-  create(data: PlanCreateDto) {
+  create(data: PlanCreateInput) {
     return this.post<PlanCreateResponse>('/create', { data });
   }
 
@@ -31,12 +31,12 @@ export class Plans extends BaseResource {
   }
 
   /** Partial update a plan by its id */
-  update(id: string, data: PlanUpdateDto) {
+  update(id: string, data: PlanUpdateInput) {
     return this.patch<PlanResponse>(`/${id}`, { data });
   }
 
   /** Delete a single plan by its id */
   remove(id: string) {
-    return this.del<PlanCancelResponse>(`/${id}`);
+    return this.del<DeleteResponse>(`/${id}`);
   }
 }
