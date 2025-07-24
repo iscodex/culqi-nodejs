@@ -82,8 +82,8 @@ describe('E2E Charges (v2)', () => {
     );
 
     if (charges.data.length) {
-      charges.data.forEach(card => {
-        expect(card).toEqual(
+      charges.data.forEach(charge => {
+        expect(charge).toEqual(
           expect.objectContaining({
             object: 'charge',
             id: expect.stringMatching(/^chr_/),
