@@ -5,6 +5,10 @@ Node.js projects.
 The library ships with **API v2** resources and is scaffolded to support future
 versions side by side.
 
+## Requirements
+
+The SDK Supports NodeJS version 22 or higher.
+
 ## Quick start
 
 ```bash
@@ -181,6 +185,12 @@ _(high-level; paths may vary)_
 
 - **Code & Types are namespaced by API version** (`src/types/v2`, `src/resources/v2`).
 - If Culqi ever ships an API v3, we’ll simply add new types and resources inside a `v3` namespace without breaking applications that remain on v2.
+
+---
+
+## Sponsor this project
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://coff.ee/alckordevd)
 
 ---
 
