@@ -1,6 +1,6 @@
 {
   "name": "culqi-nodejs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Culqi SDK for Node.js (zero runtime deps)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
