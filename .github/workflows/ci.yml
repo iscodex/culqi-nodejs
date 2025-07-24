@@ -15,10 +15,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-      - run: npm run install --immutable
-      - run: npm run format --check
-      - run: npm run lint --max-warnings=0
+          cache: yarn
+      - run: yarn install --immutable
+      - run: yarn format --check
+      - run: yarn lint --max-warnings=0
 
   test:
     name: Unit tests
@@ -29,9 +29,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-      - run: npm run install --immutable
-      - run: npm run test --coverage
+          cache: yarn
+      - run: yarn install --immutable
+      - run: yarn test --coverage
       - uses: actions/upload-artifact@v4
         with:
           name: coverage
@@ -47,9 +47,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-      - run: npm run install --immutable
-      - run: npm run build
+          cache: yarn
+      - run: yarn install --immutable
+      - run: yarn build
       - uses: actions/upload-artifact@v4
         with:
           name: dist
