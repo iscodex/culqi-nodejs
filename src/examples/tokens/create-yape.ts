@@ -10,7 +10,7 @@ culqi.tokens
   .createYape({
     otp: '946627',
     number_phone: '951123456',
-    amount: '500',
+    amount: 500,
   })
   .then(console.log)
   .catch(console.error);
