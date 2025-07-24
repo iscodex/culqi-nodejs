@@ -43,7 +43,7 @@ describe('E2E Orders (v2)', () => {
   //   expect(confirmed.state).toBe('pending');
   // });
 
-  // it('should updates an order expiration date', async () => {
+  // it('should update order expiration date', async () => {
   //   const updated = await sdk.orders.update(orderId, {
   //     expiration_date: defaultExpiration,
   //     metadata: {
@@ -54,7 +54,7 @@ describe('E2E Orders (v2)', () => {
   //   expect(updated.metadata).toEqual({ e2e: true });
   // });
 
-  it('should get existing orders', async () => {
+  it('should list existing orders with paging info', async () => {
     const orders = await sdk.orders.findBy({ limit: 2 });
 
     expect(orders).toEqual(

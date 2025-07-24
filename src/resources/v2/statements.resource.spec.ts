@@ -18,8 +18,8 @@ beforeEach(() => {
 
 afterEach(() => jest.restoreAllMocks());
 
-describe('Statements resource - unit', () => {
-  it('operations()', async () => {
+describe('Statements – Unit Test (v2)', () => {
+  it('should get a list of operations with given query params', async () => {
     const postSpy = jest.spyOn(HttpClient.prototype, 'get').mockResolvedValue({ data: [] });
 
     const query: OperationListQuery = { currency_code: 'PEN', operation_type: 'Authorized' };
@@ -32,7 +32,7 @@ describe('Statements resource - unit', () => {
     });
   });
 
-  it('deposits()', async () => {
+  it('should get a list of deposits with given query params', async () => {
     const postSpy = jest.spyOn(HttpClient.prototype, 'get').mockResolvedValue({ data: [] });
 
     const query: SettlementListQuery = {
@@ -49,7 +49,7 @@ describe('Statements resource - unit', () => {
     });
   });
 
-  it('deposit()', async () => {
+  it('should get a single deposit by its id', async () => {
     const postSpy = jest
       .spyOn(HttpClient.prototype, 'get')
       .mockResolvedValue({ id: 'fARY6gP7VeRiI2L2' });
@@ -62,7 +62,7 @@ describe('Statements resource - unit', () => {
     postSpy.mockRestore();
   });
 
-  it('billings()', async () => {
+  it('should get a list of billings with given query params', async () => {
     const postSpy = jest.spyOn(HttpClient.prototype, 'get').mockResolvedValue({ data: [] });
 
     const query: BillingListQuery = {

@@ -10,7 +10,7 @@ const sdk = CulqiClient.init({
 describe('E2E Events (v2)', () => {
   let eventId: string;
 
-  it('should get existing events', async () => {
+  it('should list existing events with paging info', async () => {
     const events = await sdk.events.findBy({ limit: 2 });
 
     expect(events).toEqual(
@@ -35,7 +35,7 @@ describe('E2E Events (v2)', () => {
     }
   });
 
-  it('should get an event by its id, otherwise handles undefined', async () => {
+  it('should retrieve a single event by its id or handle undefined', async () => {
     if (eventId) {
       const event = await sdk.events.find(eventId);
 

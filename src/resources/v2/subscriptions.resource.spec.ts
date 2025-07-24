@@ -18,8 +18,8 @@ beforeEach(() => {
 
 afterEach(() => jest.restoreAllMocks());
 
-describe('Subscriptions resource - unit', () => {
-  it('create()', async () => {
+describe('Subscriptions – Unit Test (v2)', () => {
+  it('should create a subscription', async () => {
     const postSpy = jest.spyOn(HttpClient.prototype, 'post').mockResolvedValue({ id: 'sxn_123' });
 
     const payload: SubscriptionCreateInput = {
@@ -39,7 +39,7 @@ describe('Subscriptions resource - unit', () => {
     postSpy.mockRestore();
   });
 
-  it('findBy()', async () => {
+  it('should get a list of subscriptions with given query params', async () => {
     const postSpy = jest.spyOn(HttpClient.prototype, 'get').mockResolvedValue({ data: [] });
 
     const query: SubscriptionListQuery = { limit: 10, status: 2 };
@@ -52,7 +52,7 @@ describe('Subscriptions resource - unit', () => {
     });
   });
 
-  it('find()', async () => {
+  it('should get a single subscription by its id', async () => {
     const postSpy = jest.spyOn(HttpClient.prototype, 'get').mockResolvedValue({ id: 'sxn_123' });
 
     const res = await sdk.subscriptions.find('sxn_123');
@@ -63,7 +63,7 @@ describe('Subscriptions resource - unit', () => {
     postSpy.mockRestore();
   });
 
-  it('update()', async () => {
+  it('should update a subscription', async () => {
     const postSpy = jest.spyOn(HttpClient.prototype, 'patch').mockResolvedValue({ id: 'sxn_123' });
 
     const payload: SubscriptionUpdateInput = {
@@ -79,7 +79,7 @@ describe('Subscriptions resource - unit', () => {
     });
   });
 
-  it('remove()', async () => {
+  it('should delete a subscription', async () => {
     const postSpy = jest
       .spyOn(HttpClient.prototype, 'del')
       .mockResolvedValue({ id: 'sxn_123', deleted: true });

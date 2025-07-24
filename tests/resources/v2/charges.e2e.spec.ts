@@ -38,7 +38,7 @@ describe('E2E Charges (v2)', () => {
     }
   });
 
-  it('should get a charge by its id', async () => {
+  it('should retrieve a charge by its id', async () => {
     const charge = await sdk.charges.find(chargeId);
 
     expect(charge).toEqual(
@@ -61,7 +61,7 @@ describe('E2E Charges (v2)', () => {
     );
   });
 
-  it('should updates a charge metadata', async () => {
+  it('should update charge metadata', async () => {
     if (chargeId) {
       const updated = await sdk.charges.update(chargeId, {
         metadata: { e2e: true },
@@ -71,7 +71,7 @@ describe('E2E Charges (v2)', () => {
     }
   });
 
-  it('should get existing charges', async () => {
+  it('should list existing charges with paging info', async () => {
     const charges = await sdk.charges.findBy({ limit: 2, captured: true });
 
     expect(charges).toEqual(

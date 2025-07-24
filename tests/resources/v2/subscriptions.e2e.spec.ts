@@ -66,7 +66,7 @@ describe('E2E Subscriptions (v2)', () => {
     subsId = subscription.id;
   });
 
-  it('should get a subscription by its id', async () => {
+  it('should retrieve a subscription by its id', async () => {
     const subscription = await sdk.subscriptions.find(subsId);
 
     expect(subscription).toEqual(
@@ -82,7 +82,7 @@ describe('E2E Subscriptions (v2)', () => {
     );
   });
 
-  it('should updates a subscription metadata', async () => {
+  it('should update subscription metadata', async () => {
     const updated = await sdk.subscriptions.update(subsId, {
       card_id: cardId,
       metadata: { e2e: true },
@@ -90,7 +90,7 @@ describe('E2E Subscriptions (v2)', () => {
     expect(updated.active_card).toEqual(cardId);
   });
 
-  it('should get existing subscriptions', async () => {
+  it('should list existing subscriptions with paging info', async () => {
     const subscriptions = await sdk.subscriptions.findBy({ limit: 2 });
 
     expect(subscriptions).toEqual(

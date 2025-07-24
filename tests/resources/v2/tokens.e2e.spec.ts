@@ -30,7 +30,7 @@ describe('E2E Tokens (v2)', () => {
     tokenYapeId = tokenYape.id;
   });
 
-  it('should get a token by its id', async () => {
+  it('should retrieve a card token by its id', async () => {
     const token = await sdk.tokens.find(tokenId);
 
     expect(token).toEqual(
@@ -49,7 +49,7 @@ describe('E2E Tokens (v2)', () => {
     );
   });
 
-  it('should get a token (yape) by its id', async () => {
+  it('should retrieve a yape token by its id', async () => {
     const tokenYape = await sdk.tokens.find(tokenYapeId);
 
     expect(tokenYape).toEqual(
@@ -68,21 +68,21 @@ describe('E2E Tokens (v2)', () => {
     );
   });
 
-  it('should updates a token metadata', async () => {
+  it('should update a card token metadata', async () => {
     const updated = await sdk.tokens.update(tokenId, {
       metadata: { e2e: true },
     });
     expect(updated.metadata).toEqual({ e2e: true });
   });
 
-  it('should updates a token (yape) metadata', async () => {
+  it('should update a yape token metadata', async () => {
     const updated = await sdk.tokens.update(tokenYapeId, {
       metadata: { e2e: true, method: 'yape' },
     });
     expect(updated.metadata).toEqual({ e2e: true, method: 'yape' });
   });
 
-  it('should get existing tokens', async () => {
+  it('should list existing tokens with paging info', async () => {
     const tokens = await sdk.tokens.findBy({ limit: 2, country_code: 'PE' });
 
     expect(tokens).toEqual(

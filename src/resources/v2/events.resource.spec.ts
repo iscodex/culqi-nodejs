@@ -14,8 +14,8 @@ beforeEach(() => {
 
 afterEach(() => jest.restoreAllMocks());
 
-describe('Events resource - unit', () => {
-  it('findBy()', async () => {
+describe('Events - Unit Test (v2)', () => {
+  it('should list events with given query params', async () => {
     const postSpy = jest.spyOn(HttpClient.prototype, 'get').mockResolvedValue({ data: [] });
 
     const query: EventListQuery = { limit: 10, type: 'charge.creation.succeeded' };
@@ -28,7 +28,7 @@ describe('Events resource - unit', () => {
     });
   });
 
-  it('find()', async () => {
+  it('should get a single event by its id', async () => {
     const postSpy = jest.spyOn(HttpClient.prototype, 'get').mockResolvedValue({ id: 'evt_123' });
 
     const res = await sdk.events.find('evt_123');

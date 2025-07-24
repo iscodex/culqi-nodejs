@@ -19,8 +19,8 @@ beforeEach(() => {
 
 afterEach(() => jest.restoreAllMocks());
 
-describe('Tokens resource - unit', () => {
-  it('create()', async () => {
+describe('Tokens - Unit Test (v2)', () => {
+  it('should create a card token', async () => {
     const postSpy = jest.spyOn(HttpClient.prototype, 'post').mockResolvedValue({ id: 'tkn_123' });
 
     const payload: TokenCreateInput = {
@@ -42,7 +42,7 @@ describe('Tokens resource - unit', () => {
     postSpy.mockRestore();
   });
 
-  it('findBy()', async () => {
+  it('should get a list of tokens with given query params', async () => {
     const postSpy = jest.spyOn(HttpClient.prototype, 'get').mockResolvedValue({ data: [] });
 
     const query: TokenListQuery = { limit: 10, country_code: 'US' };
@@ -55,7 +55,7 @@ describe('Tokens resource - unit', () => {
     });
   });
 
-  it('find()', async () => {
+  it('should get a single token by its id', async () => {
     const postSpy = jest.spyOn(HttpClient.prototype, 'get').mockResolvedValue({ id: 'tkn_123' });
 
     const res = await sdk.tokens.find('tkn_123');
@@ -66,7 +66,7 @@ describe('Tokens resource - unit', () => {
     postSpy.mockRestore();
   });
 
-  it('update()', async () => {
+  it('should update a token', async () => {
     const postSpy = jest.spyOn(HttpClient.prototype, 'patch').mockResolvedValue({ id: 'tkn_123' });
 
     const payload: TokenUpdateInput = { metadata: { foo: 'bar' } };
@@ -79,13 +79,13 @@ describe('Tokens resource - unit', () => {
     });
   });
 
-  it('createYape()', async () => {
+  it('should create a yape token', async () => {
     const postSpy = jest.spyOn(HttpClient.prototype, 'post').mockResolvedValue({ id: 'ype_123' });
 
     const payload: TokenCreateYapeInput = {
       otp: '946627',
       number_phone: '951123456',
-      amount: '500',
+      amount: 500,
     };
 
     const res = await sdk.tokens.createYape(payload);

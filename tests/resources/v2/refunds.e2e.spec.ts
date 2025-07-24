@@ -44,7 +44,7 @@ describe('E2E Refunds (v2)', () => {
     }
   });
 
-  it('should get a refund by its id', async () => {
+  it('should retrieve a refund by its id', async () => {
     if (refundId) {
       const refund = await sdk.refunds.find(refundId);
 
@@ -63,7 +63,7 @@ describe('E2E Refunds (v2)', () => {
     }
   });
 
-  it('should updates a refund metadata', async () => {
+  it('should update refund metadata', async () => {
     if (refundId) {
       const updated = await sdk.refunds.update(refundId, {
         metadata: { e2e: true },
@@ -72,7 +72,7 @@ describe('E2E Refunds (v2)', () => {
     }
   });
 
-  it('should get existing refunds', async () => {
+  it('should list existing refunds with paging info', async () => {
     const refunds = await sdk.refunds.findBy({ limit: 2 });
 
     expect(refunds).toEqual(

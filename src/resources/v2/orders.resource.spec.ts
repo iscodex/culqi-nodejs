@@ -19,8 +19,8 @@ beforeEach(() => {
 
 afterEach(() => jest.restoreAllMocks());
 
-describe('Orders resource - unit', () => {
-  it('create()', async () => {
+describe('Orders – Unit Test (v2)', () => {
+  it('should create an order', async () => {
     const postSpy = jest.spyOn(HttpClient.prototype, 'post').mockResolvedValue({ id: 'ord_123' });
 
     const payload: OrderCreateInput = {
@@ -49,7 +49,7 @@ describe('Orders resource - unit', () => {
     postSpy.mockRestore();
   });
 
-  it('findBy()', async () => {
+  it('should get a list of orders with given query params', async () => {
     const postSpy = jest.spyOn(HttpClient.prototype, 'get').mockResolvedValue({ data: [] });
 
     const query: OrderListQuery = { limit: 10, state: 'created' };
@@ -62,7 +62,7 @@ describe('Orders resource - unit', () => {
     });
   });
 
-  it('confirm()', async () => {
+  it('should confirm an order by its id', async () => {
     const postSpy = jest.spyOn(HttpClient.prototype, 'post').mockResolvedValue({ id: 'ord_123' });
 
     const res = await sdk.orders.confirm('ord_123');
@@ -73,7 +73,7 @@ describe('Orders resource - unit', () => {
     postSpy.mockRestore();
   });
 
-  it('confirmWithType()', async () => {
+  it('should confirm an order with types', async () => {
     const postSpy = jest.spyOn(HttpClient.prototype, 'post').mockResolvedValue({ id: 'ord_123' });
 
     const payload: OrderTypeConfirmInput = {
@@ -89,7 +89,7 @@ describe('Orders resource - unit', () => {
     });
   });
 
-  it('find()', async () => {
+  it('should get a single order by its id', async () => {
     const postSpy = jest.spyOn(HttpClient.prototype, 'get').mockResolvedValue({ id: 'ord_123' });
 
     const res = await sdk.orders.find('ord_123');
@@ -100,7 +100,7 @@ describe('Orders resource - unit', () => {
     postSpy.mockRestore();
   });
 
-  it('update()', async () => {
+  it('should update an order', async () => {
     const postSpy = jest.spyOn(HttpClient.prototype, 'patch').mockResolvedValue({ id: 'ord_123' });
 
     const payload: OrderUpdateInput = {
@@ -116,7 +116,7 @@ describe('Orders resource - unit', () => {
     });
   });
 
-  it('remove()', async () => {
+  it('should delete an order', async () => {
     const postSpy = jest
       .spyOn(HttpClient.prototype, 'del')
       .mockResolvedValue({ id: 'ord_123', deleted: true });

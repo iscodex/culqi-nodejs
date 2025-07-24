@@ -18,8 +18,8 @@ beforeEach(() => {
 
 afterEach(() => jest.restoreAllMocks());
 
-describe('Customers resource - unit', () => {
-  it('create()', async () => {
+describe('Customers - Unit Test (v2)', () => {
+  it('should create a customer', async () => {
     const postSpy = jest.spyOn(HttpClient.prototype, 'post').mockResolvedValue({ id: 'cus_123' });
 
     const payload: CustomerCreateInput = {
@@ -43,7 +43,7 @@ describe('Customers resource - unit', () => {
     postSpy.mockRestore();
   });
 
-  it('findBy()', async () => {
+  it('should get a list of customers with given query params', async () => {
     const postSpy = jest.spyOn(HttpClient.prototype, 'get').mockResolvedValue({ data: [] });
 
     const query: CustomerListQuery = { limit: 10, country_code: 'US' };
@@ -56,7 +56,7 @@ describe('Customers resource - unit', () => {
     });
   });
 
-  it('find()', async () => {
+  it('should get a single customer by its id', async () => {
     const postSpy = jest.spyOn(HttpClient.prototype, 'get').mockResolvedValue({ id: 'cus_123' });
 
     const res = await sdk.customers.find('cus_123');
@@ -67,7 +67,7 @@ describe('Customers resource - unit', () => {
     postSpy.mockRestore();
   });
 
-  it('update()', async () => {
+  it('should update a customer', async () => {
     const postSpy = jest.spyOn(HttpClient.prototype, 'patch').mockResolvedValue({ id: 'cus_123' });
 
     const payload: CustomerUpdateInput = {
@@ -84,7 +84,7 @@ describe('Customers resource - unit', () => {
     });
   });
 
-  it('remove()', async () => {
+  it('should delete a customer', async () => {
     const postSpy = jest
       .spyOn(HttpClient.prototype, 'del')
       .mockResolvedValue({ id: 'cus_123', deleted: true });

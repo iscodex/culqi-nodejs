@@ -30,7 +30,7 @@ describe('E2E Plans (v2)', () => {
     planId = plan.id;
   });
 
-  it('should get a plan by its id', async () => {
+  it('should retrieve a plan by its id', async () => {
     const plan = await sdk.plans.find(planId);
 
     expect(plan).toEqual(
@@ -52,7 +52,7 @@ describe('E2E Plans (v2)', () => {
     );
   });
 
-  it('should updates a plan info partial', async () => {
+  it('should update plan info', async () => {
     const updated = await sdk.plans.update(planId, {
       name: faker.commerce.productName(),
       short_name: faker.lorem.slug({ min: 1, max: 3 }),
@@ -62,7 +62,7 @@ describe('E2E Plans (v2)', () => {
     expect(updated.metadata).toEqual({ e2e: 'true' });
   });
 
-  it('should get existing plans', async () => {
+  it('should list existing plans with paging info', async () => {
     const plans = await sdk.plans.findBy({ limit: 2, status: 1 });
 
     expect(plans).toEqual(

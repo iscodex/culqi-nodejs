@@ -14,8 +14,8 @@ beforeEach(() => {
 
 afterEach(() => jest.restoreAllMocks());
 
-describe('Plans resource - unit', () => {
-  it('create()', async () => {
+describe('Plans – Unit Test (v2)', () => {
+  it('should create a plan', async () => {
     const postSpy = jest.spyOn(HttpClient.prototype, 'post').mockResolvedValue({ id: 'pln_123' });
 
     const payload: PlanCreateInput = {
@@ -45,7 +45,7 @@ describe('Plans resource - unit', () => {
     postSpy.mockRestore();
   });
 
-  it('findBy()', async () => {
+  it('should get a list of plans with given query params', async () => {
     const postSpy = jest.spyOn(HttpClient.prototype, 'get').mockResolvedValue({ data: [] });
 
     const query: PlanListQuery = { status: 1, creation_date_to: 1671720949000 };
@@ -58,7 +58,7 @@ describe('Plans resource - unit', () => {
     });
   });
 
-  it('find()', async () => {
+  it('should get a single plan by its id', async () => {
     const postSpy = jest.spyOn(HttpClient.prototype, 'get').mockResolvedValue({ id: 'pln_123' });
 
     const res = await sdk.plans.find('pln_123');
@@ -69,7 +69,7 @@ describe('Plans resource - unit', () => {
     postSpy.mockRestore();
   });
 
-  it('update()', async () => {
+  it('should update a plan', async () => {
     const postSpy = jest.spyOn(HttpClient.prototype, 'patch').mockResolvedValue({ id: 'pln_123' });
 
     const payload: PlanUpdateInput = {
@@ -86,7 +86,7 @@ describe('Plans resource - unit', () => {
     });
   });
 
-  it('remove()', async () => {
+  it('should delete a plan', async () => {
     const postSpy = jest
       .spyOn(HttpClient.prototype, 'del')
       .mockResolvedValue({ id: 'pln_123', deleted: true });

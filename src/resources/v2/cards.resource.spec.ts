@@ -14,8 +14,8 @@ beforeEach(() => {
 
 afterEach(() => jest.restoreAllMocks());
 
-describe('Cards resource - unit', () => {
-  it('create()', async () => {
+describe('Cards - Unit Test (v2)', () => {
+  it('should create a card', async () => {
     const postSpy = jest.spyOn(HttpClient.prototype, 'post').mockResolvedValue({ id: 'crd_123' });
 
     const payload: CardCreateInput = {
@@ -35,7 +35,7 @@ describe('Cards resource - unit', () => {
     postSpy.mockRestore();
   });
 
-  it('findBy()', async () => {
+  it('should get a list of cards with given query params', async () => {
     const postSpy = jest.spyOn(HttpClient.prototype, 'get').mockResolvedValue({ data: [] });
 
     const query: CardListQuery = { limit: 10, creation_date: 1476132639 };
@@ -48,7 +48,7 @@ describe('Cards resource - unit', () => {
     });
   });
 
-  it('find()', async () => {
+  it('should get a single card by its id', async () => {
     const postSpy = jest.spyOn(HttpClient.prototype, 'get').mockResolvedValue({ id: 'crd_123' });
 
     const res = await sdk.cards.find('crd_123');
@@ -59,7 +59,7 @@ describe('Cards resource - unit', () => {
     postSpy.mockRestore();
   });
 
-  it('update()', async () => {
+  it('should update a card', async () => {
     const postSpy = jest.spyOn(HttpClient.prototype, 'patch').mockResolvedValue({ id: 'crd_123' });
 
     const payload: CardUpdateInput = { token_id: 'tkn_123', metadata: { foo: 'bar' } };

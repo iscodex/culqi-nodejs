@@ -14,8 +14,8 @@ beforeEach(() => {
 
 afterEach(() => jest.restoreAllMocks());
 
-describe('Refunds resource - unit', () => {
-  it('create()', async () => {
+describe('Refunds – Unit Test (v2)', () => {
+  it('should create a refund', async () => {
     const postSpy = jest.spyOn(HttpClient.prototype, 'post').mockResolvedValue({ id: 'ref_123' });
 
     const payload: RefundCreateInput = {
@@ -35,7 +35,7 @@ describe('Refunds resource - unit', () => {
     postSpy.mockRestore();
   });
 
-  it('findBy()', async () => {
+  it('should get a list of refunds with given query params', async () => {
     const postSpy = jest.spyOn(HttpClient.prototype, 'get').mockResolvedValue({ data: [] });
 
     const query: RefundListQuery = { limit: 10, reason: 'duplicado' };
@@ -48,7 +48,7 @@ describe('Refunds resource - unit', () => {
     });
   });
 
-  it('find()', async () => {
+  it('should get a single refund by its id', async () => {
     const postSpy = jest.spyOn(HttpClient.prototype, 'get').mockResolvedValue({ id: 'ref_123' });
 
     const res = await sdk.refunds.find('ref_123');
@@ -59,7 +59,7 @@ describe('Refunds resource - unit', () => {
     postSpy.mockRestore();
   });
 
-  it('update()', async () => {
+  it('should update a refund', async () => {
     const postSpy = jest.spyOn(HttpClient.prototype, 'patch').mockResolvedValue({ id: 'ref_123' });
 
     const payload: RefundUpdateInput = { metadata: { foo: 'bar' } };
