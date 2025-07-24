@@ -40,7 +40,7 @@ describe('E2E Cards (v2)', () => {
     cardId = card.id;
   });
 
-  it('creates valid card', async () => {
+  it('should get a card by its id', async () => {
     const card = await sdk.cards.find(cardId);
 
     expect(card).toEqual(
@@ -55,14 +55,14 @@ describe('E2E Cards (v2)', () => {
     );
   });
 
-  it('updates card metadata', async () => {
+  it('should updates a card metadata', async () => {
     const updated = await sdk.cards.update(cardId, {
       metadata: { e2e: true },
     });
     expect(updated.metadata).toEqual({ e2e: true });
   });
 
-  it('get existing cards', async () => {
+  it('should get existing cards', async () => {
     const cards = await sdk.cards.findBy({ limit: 2, country_code: 'PE' });
 
     expect(cards).toEqual(

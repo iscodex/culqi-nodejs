@@ -24,7 +24,7 @@ describe('E2E Customers (v2)', () => {
     customerId = customer.id;
   });
 
-  it('creates customer', async () => {
+  it('should get a customer by its id', async () => {
     const customer = await sdk.customers.find(customerId);
 
     expect(customer).toEqual(
@@ -46,14 +46,14 @@ describe('E2E Customers (v2)', () => {
     );
   });
 
-  it('updates customer metadata', async () => {
+  it('should updates a customer metadata', async () => {
     const updated = await sdk.customers.update(customerId, {
       metadata: { e2e: true },
     });
     expect(updated.metadata).toEqual({ e2e: true });
   });
 
-  it('get existing customers', async () => {
+  it('should get existing customers', async () => {
     const customers = await sdk.customers.findBy({ limit: 2 });
 
     expect(customers).toEqual(

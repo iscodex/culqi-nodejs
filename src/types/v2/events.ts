@@ -6,6 +6,7 @@ import { Paging } from './common';
 
 export type EventResponse = {
   object: 'event';
+  id: string;
   type: string;
   data: unknown;
 };

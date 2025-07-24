@@ -38,32 +38,30 @@ describe('E2E Charges (v2)', () => {
     }
   });
 
-  it('creates charge', async () => {
-    if (chargeId) {
-      const charge = await sdk.charges.find(chargeId);
+  it('should get a charge by its id', async () => {
+    const charge = await sdk.charges.find(chargeId);
 
-      expect(charge).toEqual(
-        expect.objectContaining({
-          object: 'charge',
-          id: expect.stringMatching(/^chr_/),
-          creation_date: expect.any(Number),
-          amount: expect.any(Number),
-          amount_refunded: expect.any(Number),
-          current_amount: expect.any(Number),
-          installments: expect.any(Number),
-          email: expect.any(String),
-          source: expect.any(Object),
-          outcome: expect.any(Object),
-          duplicated: expect.any(Boolean),
-          dispute: expect.any(Boolean),
-          capture: expect.any(Boolean),
-          paid: expect.any(Boolean),
-        }),
-      );
-    }
+    expect(charge).toEqual(
+      expect.objectContaining({
+        object: 'charge',
+        id: expect.stringMatching(/^chr_/),
+        creation_date: expect.any(Number),
+        amount: expect.any(Number),
+        amount_refunded: expect.any(Number),
+        current_amount: expect.any(Number),
+        installments: expect.any(Number),
+        email: expect.any(String),
+        source: expect.any(Object),
+        outcome: expect.any(Object),
+        duplicated: expect.any(Boolean),
+        dispute: expect.any(Boolean),
+        capture: expect.any(Boolean),
+        paid: expect.any(Boolean),
+      }),
+    );
   });
 
-  it('updates charge metadata', async () => {
+  it('should updates a charge metadata', async () => {
     if (chargeId) {
       const updated = await sdk.charges.update(chargeId, {
         metadata: { e2e: true },
@@ -73,7 +71,7 @@ describe('E2E Charges (v2)', () => {
     }
   });
 
-  it('get existing charges', async () => {
+  it('should get existing charges', async () => {
     const charges = await sdk.charges.findBy({ limit: 2, captured: true });
 
     expect(charges).toEqual(
@@ -108,6 +106,4 @@ describe('E2E Charges (v2)', () => {
       });
     }
   });
-
-  // afterAll(async () => {});
 });
