@@ -8,9 +8,9 @@ const sdk = CulqiClient.init({
   apiVersion: '2',
 });
 
-let customerId: string;
-
 describe('E2E Customers (v2)', () => {
+  let customerId: string;
+
   beforeAll(async () => {
     const customer = await sdk.customers.create({
       address: faker.location.streetAddress(),

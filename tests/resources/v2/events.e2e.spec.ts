@@ -7,9 +7,9 @@ const sdk = CulqiClient.init({
   apiVersion: '2',
 });
 
-let eventId: string;
-
 describe('E2E Events (v2)', () => {
+  let eventId: string;
+
   it('should get existing events', async () => {
     const events = await sdk.events.findBy({ limit: 2 });
 

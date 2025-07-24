@@ -14,9 +14,9 @@ function isPending(c: NoAuthResponse | ChargeResponse): c is NoAuthResponse {
   return 'action_code' in c;
 }
 
-let chargeId: string;
-
 describe('E2E Charges (v2)', () => {
+  let chargeId: string;
+
   beforeAll(async () => {
     const token = await sdk.tokens.create({
       card_number: '4111111111111111',

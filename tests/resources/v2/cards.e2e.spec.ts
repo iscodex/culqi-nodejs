@@ -8,10 +8,10 @@ const sdk = CulqiClient.init({
   apiVersion: '2',
 });
 
-let customerId: string;
-let cardId: string;
-
 describe('E2E Cards (v2)', () => {
+  let customerId: string;
+  let cardId: string;
+
   beforeAll(async () => {
     const token = await sdk.tokens.create({
       card_number: '4111111111111111',
