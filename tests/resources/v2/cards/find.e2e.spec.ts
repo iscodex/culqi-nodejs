@@ -8,8 +8,8 @@ const sdk = CulqiClient.init({
   apiVersion: '2',
 });
 
-describe('E2E Card, create', () => {
-  it('should create a valid card', async () => {
+describe('E2E Card, find', () => {
+  it('should get a card by its id', async () => {
     const token = await sdk.tokens.create({
       card_number: '4111111111111111',
       cvv: '123',
@@ -17,7 +17,6 @@ describe('E2E Card, create', () => {
       expiration_year: String(new Date().getFullYear() + 1),
       email: faker.internet.email(),
     });
-
     const customer = await sdk.customers.create({
       address: faker.location.streetAddress(),
       address_city: faker.location.city(),
@@ -27,12 +26,13 @@ describe('E2E Card, create', () => {
       last_name: faker.person.lastName(),
       phone_number: '6505434800',
     });
-
-    const card = await sdk.cards.create({
+    let card = await sdk.cards.create({
       customer_id: customer.id,
       token_id: token.id,
       validate: true,
     });
+
+    card = await sdk.cards.find(card.id);
 
     expect(card).toEqual(
       expect.objectContaining({
