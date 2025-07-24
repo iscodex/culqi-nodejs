@@ -28,7 +28,7 @@ export class Refunds extends BaseResource {
   }
 
   /**
-   * List refunds
+   * Get refunds
    *
    * @see {@link https://github.com/iscodex/culqi-nodejs/blob/main/src/examples/refunds/find-by.ts Usage Example}
    * */

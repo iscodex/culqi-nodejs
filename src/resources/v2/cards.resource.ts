@@ -29,7 +29,7 @@ export class Cards extends BaseResource {
   }
 
   /**
-   * List cards
+   * Get cards
    *
    * @see {@link https://github.com/iscodex/culqi-nodejs/blob/main/src/examples/cards/find-by.ts Usage Example}
    * */

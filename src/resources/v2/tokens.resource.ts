@@ -29,7 +29,7 @@ export class Tokens extends BaseResource {
   }
 
   /**
-   * List tokens
+   * Get tokens
    *
    * @see {@link https://github.com/iscodex/culqi-nodejs/blob/main/src/examples/tokens/find-by.ts Usage Example}
    * */
@@ -56,7 +56,7 @@ export class Tokens extends BaseResource {
   }
 
   /**
-   * Create token for yape
+   * Create token (Yape)
    *
    * @see {@link https://github.com/iscodex/culqi-nodejs/blob/main/src/examples/tokens/create-yape.ts Usage Example}
    * */

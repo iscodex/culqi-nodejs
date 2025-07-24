@@ -13,7 +13,7 @@ export class Events extends BaseResource {
   }
 
   /**
-   * List events
+   * Get events
    *
    * @see {@link https://github.com/iscodex/culqi-nodejs/blob/main/src/examples/events/find-by.ts Usage Example}
    * */

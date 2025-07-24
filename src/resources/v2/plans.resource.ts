@@ -30,7 +30,7 @@ export class Plans extends BaseResource {
   }
 
   /**
-   * List plans
+   * Get plans
    *
    * @see {@link https://github.com/iscodex/culqi-nodejs/blob/main/src/examples/plans/find-by.ts Usage Example}
    * */

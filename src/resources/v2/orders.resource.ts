@@ -29,7 +29,7 @@ export class Orders extends BaseResource {
   }
 
   /**
-   * List orders
+   * Get orders
    *
    * @see {@link https://github.com/iscodex/culqi-nodejs/blob/main/src/examples/orders/find-by.ts Usage Example}
    * */

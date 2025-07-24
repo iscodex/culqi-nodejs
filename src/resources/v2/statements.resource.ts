@@ -21,7 +21,7 @@ export class Statements extends BaseResource {
   }
 
   /**
-   * List operations
+   * Get operations
    *
    * @see {@link https://github.com/iscodex/culqi-nodejs/blob/main/src/examples/statements/operations.ts Usage Example}
    * */
@@ -30,7 +30,7 @@ export class Statements extends BaseResource {
   }
 
   /**
-   * List deposits
+   * Get deposits
    *
    * @see {@link https://github.com/iscodex/culqi-nodejs/blob/main/src/examples/statements/deposits.ts Usage Example}
    * */
@@ -39,7 +39,7 @@ export class Statements extends BaseResource {
   }
 
   /**
-   * Get deposit detail
+   * Get deposit
    *
    * @see {@link https://github.com/iscodex/culqi-nodejs/blob/main/src/examples/statements/deposit-detail.ts Usage Example}
    * */
@@ -48,7 +48,7 @@ export class Statements extends BaseResource {
   }
 
   /**
-   * List billings
+   * Get billings
    *
    * @see {@link https://github.com/iscodex/culqi-nodejs/blob/main/src/examples/statements/billings.ts Usage Example}
    * */

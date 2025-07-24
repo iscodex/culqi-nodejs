@@ -30,7 +30,7 @@ export class Subscriptions extends BaseResource {
   }
 
   /**
-   * List subscriptions
+   * Get subscriptions
    *
    * @see {@link https://github.com/iscodex/culqi-nodejs/blob/main/src/examples/subscriptions/find-by.ts Usage Example}
    * */

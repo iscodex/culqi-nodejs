@@ -29,7 +29,7 @@ export class Charges extends BaseResource {
   }
 
   /**
-   * List charges
+   * Get charges
    *
    * @see {@link https://github.com/iscodex/culqi-nodejs/blob/main/src/examples/charges/find-by.ts Usage Example}
    * */

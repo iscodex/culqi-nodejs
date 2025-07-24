@@ -1,16 +1,18 @@
 # Culqi Node SDK (TypeScript)
 
-**Culqi, zero‑runtime‑dependency SDK** to integrate Culqi’s REST API in Node.js.
-This scaffold targets **API v2** and is ready for future versions side‑by‑side.
+**Culqi, zero-runtime-dependency SDK** for integrating Culqi’s REST API in
+Node.js projects.  
+The library ships with **API v2** resources and is scaffolded to support future
+versions side by side.
 
 ## Quick start
 
 ```bash
-npm install @culqi/node-sdk
+npm install culqi-nodejs
 ```
 
 ```ts
-import { CulqiClient } from '@culqi/node-sdk';
+import { CulqiClient } from 'culqi-nodejs';
 
 const culqi = CulqiClient.init({
   publicKey: process.env.CULQI_PUBLIC_KEY!,
@@ -23,6 +25,7 @@ const { id: tokenId } = await culqi.tokens.create({
   cvv: '123',
   expiration_month: '07',
   expiration_year: '2027',
+  email: 'jane_doe@domain.com',
 });
 
 await culqi.charges.create({
@@ -35,74 +38,149 @@ await culqi.charges.create({
 
 ## Scripts
 
-| Command          | Description                    |
-| ---------------- | ------------------------------ |
-| `npm run build`  | Compile TypeScript to `dist/`  |
-| `npm test`       | Run Jest test suite + coverage |
-| `npm run lint`   | Lint using ESLint Flat Config  |
-| `npm run format` | Format code with Prettier      |
+| Command          | Description                                |
+| ---------------- | ------------------------------------------ |
+| `npm run build`  | Compile TypeScript to `dist/`              |
+| `npm test`       | Run **unit** tests + coverage (Jest)       |
+| `npm test:e2e`   | Run **E2E** tests against Culqi sandbox¹   |
+| `npm run lint`   | Lint codebase with ESLint v9 (Flat Config) |
+| `npm run format` | Format code with Prettier                  |
+
+¹ Requires `CULQI_PUBLIC_KEY` and `CULQI_SECRET_KEY` environment variables.
 
 ---
 
 ## Project structure
+
+_(high-level; paths may vary)_
 
 ```
 ├─ src/
 │  ├─ client/
 │  │   ├─ culqi-client.ts
 │  │   └─ http-client.ts
-│  ├─ dtos/
-│  │   └─ v2/
-│  │       ├─ common.dto.ts
-│  │       ├─ cards.dto.ts
-│  │       ├─ charges.dto.ts
-│  │       ├─ customers.dto.ts
-│  │       ├─ events.dto.ts
-│  │       ├─ orders.dto.ts
-│  │       ├─ plans.dto.ts
-│  │       ├─ refunds.dto.ts
-│  │       ├─ subscriptions.dto.ts
-│  │       └─ tokens.dto.ts
+│  ├─ examples/
+│  │   ├─ cards
+│  │   ├─ charges
+│  │   └─ ...
 │  ├─ resources/
-│  │   ├─ v2/
+│  │   └─ v2/
+│  │   │   ├─ cards.resource.spec.ts
 │  │   │   ├─ cards.resource.ts
+│  │   │   ├─ charges.resource.spec.ts
 │  │   │   ├─ charges.resource.ts
-│  │   │   ├─ customers.resource.ts
-│  │   │   ├─ events.resource.ts
-│  │   │   ├─ orders.resource.ts
-│  │   │   ├─ plans.resource.ts
-│  │   │   ├─ refunds.resource.ts
-│  │   │   ├─ subscriptions.resource.ts
-│  │   │   └─ tokens.resource.ts
+│  │   │   └─ ...
 │  │   ├─ base.resource.ts
+│  ├─ types/
+│  │   ├─ v2/
+│  │   │   ├─ cards.ts
+│  │   │   ├─ charges.ts
+│  │   │   └─ ...
+│  │   ├─ resource.ts
 │  ├─ utils/
 │  │   └─ resource-factory.ts
-│  ├─ index.ts
-│  └─ types.ts
+│  └─ index.ts
 ├─ tests/
-│  ├─ client/
-│  │   ├─ culqi-client.test.ts
-│  │   └─ http-client.test.ts
-│  └─ resources/
-│      └─ v2/
-│          ├─ cards.resource.test.ts
-│          ├─ charges.resource.test.ts
-│          ├─ customer.resource.test.ts
-│          ├─ events.resource.test.ts
-│          ├─ orders.resource.test.ts
-│          ├─ plans.resource.test.ts
-│          ├─ refunds.resource.test.ts
-│          ├─ subscriptions.resource.test.ts
-│          └─ tokens.resource.test.ts
+│  ├─ resources/
+│  │    └─ v2/
+│  │        ├─ cards/
+│  │        │   ├─ create.e2e.spec.ts
+│  │        │   └─ ...
+│  │        ├─ charges/
+│  │        │   ├─ create.e2e.spec.ts
+│  │        │   └─ ...
+│  │        └─ ...
+│  └─ e2e.config.ts
 └─ ...
 ```
 
 ---
 
+## Available operations
+
+### [Tokens](https://github.com/iscodex/culqi-nodejs/tree/main/src/examples/tokens)
+
+- Create token
+- Get tokens
+- Get token
+- Update token
+- Create token (Yape)
+
+### [Charges](https://github.com/iscodex/culqi-nodejs/tree/main/src/examples/charges)
+
+- Create charge
+- Get charges
+- Get charge
+- Update charge
+- Capture charge
+
+### [Refunds](https://github.com/iscodex/culqi-nodejs/tree/main/src/examples/refunds)
+
+- Create refund
+- Get refunds
+- Get refund
+- Update refund
+
+### [Customers](https://github.com/iscodex/culqi-nodejs/tree/main/src/examples/customers)
+
+- Create customer
+- Get customers
+- Get customer
+- Update customer
+- Delete customer
+
+### [Cards](https://github.com/iscodex/culqi-nodejs/tree/main/src/examples/cards)
+
+- Create card
+- Get cards
+- Get card
+- Update card
+- Delete card
+
+### [Plans](https://github.com/iscodex/culqi-nodejs/tree/main/src/examples/plans)
+
+- Create plan
+- Get plans
+- Get plan
+- Update plan
+- Delete plan
+
+### [Subscriptions](https://github.com/iscodex/culqi-nodejs/tree/main/src/examples/subscriptions)
+
+- Create subscription
+- Get subscriptions
+- Get subscription
+- Update subscription
+- Cancel subscription
+
+### [Orders](https://github.com/iscodex/culqi-nodejs/tree/main/src/examples/orders)
+
+- Create order
+- Get orders
+- Confirm order
+- Confirm order type
+- Get order
+- Update order
+- Delete order
+
+### [Events](https://github.com/iscodex/culqi-nodejs/tree/main/src/examples/events)
+
+- Get events
+- Get event
+
+### [Statements](https://github.com/iscodex/culqi-nodejs/tree/main/src/examples/statements)
+
+- Get operations
+- Get deposits
+- Get deposit
+- Get billings
+
+---
+
 ## Versioning strategy
 
-- **Code & DTOs are namespaced by API version** (`src/dtos/v2`, `src/resources/…`).
-- When Culqi publishes v3 you’ll add new DTOs under `v3` and wire new resource classes without breaking v2 users.
+- **Code & Types are namespaced by API version** (`src/types/v2`, `src/resources/v2`).
+- If Culqi ever ships an API v3, we’ll simply add new types and resources inside a `v3` namespace without breaking applications that remain on v2.
 
 ---
 

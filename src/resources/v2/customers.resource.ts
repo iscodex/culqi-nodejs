@@ -29,7 +29,7 @@ export class Customers extends BaseResource {
   }
 
   /**
-   * List customers
+   * Get customers
    *
    * @see {@link https://github.com/iscodex/culqi-nodejs/blob/main/src/examples/customers/find-by.ts Usage Example}
    * */
