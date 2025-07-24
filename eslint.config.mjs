@@ -1,5 +1,6 @@
 import js from '@eslint/js';
 import tsPlugin from '@typescript-eslint/eslint-plugin';
+import jePlugin from 'eslint-plugin-jest';
 import tsParser from '@typescript-eslint/parser';
 import prettier from 'eslint-plugin-prettier';
 
@@ -16,9 +17,8 @@ export default [
     languageOptions: {
       parser: tsParser,
       parserOptions: { project: './tsconfig.json' },
-      env: { node: true },
       // // Let ESLint know fetch is available (Node >= 18)
-      // globals: { fetch: 'readonly', console: 'readonly' },
+      globals: { fetch: 'readonly', console: 'readonly' },
     },
     plugins: { '@typescript-eslint': tsPlugin, prettier },
     rules: {
@@ -32,7 +32,7 @@ export default [
     files: ['src/types/**', '**/*.spec.ts', '**/*.e2e.spec.ts'],
     languageOptions: {
       parserOptions: { project: './tsconfig.json' },
-      env: { jest: true, node: true },
+      globals: jePlugin.environments.globals.globals,
     },
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
