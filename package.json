@@ -12,7 +12,8 @@
     "test": "jest --config jest.config.ts",
     "test:e2e": "jest --config jest.e2e.config.ts",
     "lint": "eslint --ext .ts src tests",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@faker-js/faker": "^9.9.0",
@@ -24,7 +25,9 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-jest": "^29.0.1",
     "eslint-plugin-prettier": "^5.5.3",
+    "husky": "^9.1.7",
     "jest": "^30.0.5",
+    "lint-staged": "^16.1.2",
     "prettier": "^3.6.2",
     "ts-jest": "^29.4.0",
     "ts-node": "^10.9.2",

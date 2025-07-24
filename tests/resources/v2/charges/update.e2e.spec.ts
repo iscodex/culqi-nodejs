@@ -14,8 +14,8 @@ function isPending(c: NoAuthResponse | ChargeResponse): c is NoAuthResponse {
   return 'action_code' in c;
 }
 
-describe('E2E Charge, create', () => {
-  it('should create a charge', async () => {
+describe('E2E Charge, update', () => {
+  it('should update a charge by its id', async () => {
     const token = await sdk.tokens.create({
       card_number: '4111111111111111',
       cvv: '123',
@@ -24,7 +24,7 @@ describe('E2E Charge, create', () => {
       email: faker.internet.email(),
     });
 
-    const charge = await sdk.charges.create({
+    let charge = await sdk.charges.create({
       amount: 10000,
       currency_code: 'PEN',
       email: token.email,
@@ -36,8 +36,30 @@ describe('E2E Charge, create', () => {
       expect(charge.action_code).toBe('REVIEW');
     } else {
       // ChargeResponse
-      expect(charge.source.id).toBe(token.id);
-      expect(charge.outcome.code).toBe('AUT0000');
+      charge = await sdk.charges.update(charge.id, {
+        metadata: {
+          client_id: faker.string.uuid(),
+        },
+      });
+
+      expect(charge).toEqual(
+        expect.objectContaining({
+          object: 'charge',
+          id: expect.stringMatching(/^chr_/),
+          creation_date: expect.any(Number),
+          amount: expect.any(Number),
+          amount_refunded: expect.any(Number),
+          current_amount: expect.any(Number),
+          installments: expect.any(Number),
+          email: expect.any(String),
+          source: expect.any(Object),
+          outcome: expect.any(Object),
+          duplicated: expect.any(Boolean),
+          dispute: expect.any(Boolean),
+          capture: expect.any(Boolean),
+          paid: expect.any(Boolean),
+        }),
+      );
     }
   });
 });
