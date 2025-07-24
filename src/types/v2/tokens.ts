@@ -21,7 +21,7 @@ export type TokenUpdateInput = {
 export type TokenCreateYapeInput = {
   otp: string;
   number_phone: string;
-  amount: string;
+  amount: number;
   metadata?: Record<string, unknown>;
 };
 
