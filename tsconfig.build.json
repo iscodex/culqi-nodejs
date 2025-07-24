@@ -6,12 +6,13 @@
     "declaration": true,
     "emitDeclarationOnly": false
   },
-  "exclude": [
-    "node_modules",
-    "coverage",
-    "tests",
-    "**/*.spec.ts",
-    "**/*.e2e.spec.ts",
-    "src/examples"
-  ]
+  "include": ["src/**/*"]
+  // "exclude": [
+  //   "node_modules",
+  //   "coverage",
+  //   "tests",
+  //   "**/*.spec.ts",
+  //   "**/*.e2e.spec.ts",
+  //   "src/examples"
+  // ]
 }
