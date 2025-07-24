@@ -89,12 +89,8 @@ _(high-level; paths may vary)_
 ├─ tests/
 │  ├─ resources/
 │  │    └─ v2/
-│  │        ├─ cards/
-│  │        │   ├─ create.e2e.spec.ts
-│  │        │   └─ ...
-│  │        ├─ charges/
-│  │        │   ├─ create.e2e.spec.ts
-│  │        │   └─ ...
+│  │        ├─ cards.e2e.spec.ts
+│  │        ├─ charges.e2e.spec.ts
 │  │        └─ ...
 │  └─ e2e.config.ts
 └─ ...
