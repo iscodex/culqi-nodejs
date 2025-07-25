@@ -1,6 +1,8 @@
 # Culqi Node SDK (TypeScript)
 
-[![NPM Version](https://img.shields.io/npm/v/culqi-nodejs.svg)](https://www.npmjs.com/package/culqi-nodejs)
+![NPM Downloads](https://img.shields.io/npm/dw/culqi-nodejs)
+![NPM License](https://img.shields.io/npm/l/culqi-nodejs)
+![NPM Version](https://img.shields.io/npm/v/culqi-nodejs)
 
 **Culqi, zero-runtime-dependency SDK** for integrating Culqi’s REST API in
 Node.js projects.  
@@ -31,14 +33,14 @@ const { id: tokenId } = await culqi.tokens.create({
   cvv: '123',
   expiration_month: '07',
   expiration_year: '2027',
-  email: 'jane_doe@domain.com',
+  email: 'ichard@piedpiper.com',
 });
 
 await culqi.charges.create({
   amount: 1000,
   currency_code: 'PEN',
   source_id: tokenId,
-  email: 'jane_doe@domain.com',
+  email: 'ichard@piedpiper.com',
 });
 ```
 
