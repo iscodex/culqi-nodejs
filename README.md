@@ -1,8 +1,8 @@
 # Culqi Node SDK (TypeScript)
 
-![NPM Downloads](https://img.shields.io/npm/dw/culqi-nodejs)
-![NPM License](https://img.shields.io/npm/l/culqi-nodejs)
-![NPM Version](https://img.shields.io/npm/v/culqi-nodejs)
+[![NPM version](https://img.shields.io/npm/v/culqi-nodejs?color=32A9C3&labelColor=1B3C4A&label=npm)](https://www.npmjs.com/package/culqi-nodejs)
+[![NPM downloads](https://img.shields.io/npm/dm/culqi-nodejs?color=32A9C3&labelColor=1B3C4A&label=downloads)](https://www.npmjs.com/package/culqi-nodejs)
+[![NPM License](https://img.shields.io/npm/l/culqi-nodejs?color=32A9C3&labelColor=1B3C4A&label=license)](https://www.npmjs.com/package/culqi-nodejs)
 
 **Culqi, zero-runtime-dependency SDK** for integrating Culqi’s REST API in
 Node.js projects.  
